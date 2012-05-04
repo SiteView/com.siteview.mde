@@ -1,0 +1,1 @@
+editor for the extension *.MON, need add the Monitor Editor to the preference extension/editor for *.MON.

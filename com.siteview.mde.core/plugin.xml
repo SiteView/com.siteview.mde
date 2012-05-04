@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2005, 2011 IBM Corporation and others.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         IBM Corporation - initial API and implementation
+ -->
+
+<plugin>
+
+     <extension-point id="source" name="%expoint.source.name" schema="schema/source.exsd"/>
+     <extension-point id="javadoc" name="%expoint.javadoc.name" schema="schema/javadoc.exsd"/>
+     <extension-point id="targets" name="%expoint.target.name" schema="schema/targets.exsd"/>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="com.siteview.mde.internal.core.EclipseHomeInitializer"
+            readOnly="true"
+            variable="ECLIPSE_HOME">
+      </classpathVariableInitializer>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="com.siteview.mde.internal.core.PreferenceInitializer"/>
+      <modifier
+            class="com.siteview.mde.internal.core.TargetPreferenceModifyListener">
+      </modifier>
+   </extension>
+   <extension
+         point="org.eclipse.team.core.repository">
+      <repository
+            class="com.siteview.mde.internal.core.BinaryRepositoryProvider"
+            id="com.siteview.mde.core.BinaryRepositoryProvider">
+      </repository>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+            class="com.siteview.mde.internal.core.RequiredPluginsInitializer"
+            id="com.siteview.mde.core.requiredPlugins"/>
+     <classpathContainerInitializer
+            class="com.siteview.mde.internal.core.ExternalJavaSearchInitializer"
+            id="com.siteview.mde.core.externalJavaSearch"/>
+   </extension>
+   <extension
+         point="org.eclipse.team.core.fileTypes">
+      <fileTypes
+            type="text"
+            extension="ini">
+      </fileTypes>
+      <fileTypes
+            type="text"
+            extension="product">
+      </fileTypes>
+   </extension>
+
+<!-- ================================================================================= -->
+<!-- Natures                                                                           -->
+<!-- ================================================================================= -->
+   <extension
+         id="com.siteview.mde.PluginNature"
+         name="%natures.pluginNature.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.siteview.mde.internal.core.natures.MonitorProject">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         id="com.siteview.mde.FeatureNature"
+         name="%natures.featureNature.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.siteview.mde.internal.core.natures.FeatureProject">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         id="com.siteview.mde.UpdateSiteNature"
+         name="%natures.siteNature.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.siteview.mde.internal.core.natures.SiteProject">
+         </run>
+      </runtime>
+   </extension>
+   
+<!-- ================================================================================= -->
+<!-- Builders                                                                          -->
+<!-- ================================================================================= -->
+   <extension
+         id="com.siteview.mde.ManifestBuilder"
+         name="%builders.manifestBuilder.name"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="com.siteview.mde.internal.core.builders.ManifestConsistencyChecker">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="com.siteview.mde.SchemaBuilder"
+         name="%builders.schemaBuilder.name"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="com.siteview.mde.internal.core.builders.ExtensionPointSchemaBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="com.siteview.mde.FeatureBuilder"
+         name="%builders.featureBuilder.name"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="com.siteview.mde.internal.core.builders.FeatureConsistencyChecker">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="com.siteview.mde.UpdateSiteBuilder"
+         name="%builders.siteBuilder.name"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="com.siteview.mde.internal.core.builders.UpdateSiteBuilder">
+         </run>
+      </builder>
+   </extension>
+      
+<!-- ================================================================================= -->
+<!-- Markers                                                                           -->
+<!-- ================================================================================= -->
+   <extension
+         id="problem"
+         name="%builders.marker.label"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.core.resources.textmarker"/>
+      <attribute name="id"/>
+      <attribute name="PDECategoryId"/>
+      <persistent value="true"/>
+   </extension>
+   
+<!-- ================================================================================= -->
+<!-- Ant-related extensions                                                            -->
+<!-- ================================================================================= -->
+    <extension
+         point="org.eclipse.ant.core.antTasks">
+      <antTask
+            library="ant_tasks/pde-ant.jar"
+            name="pde.convertSchemaToHTML"
+            class="com.siteview.mde.internal.core.ant.ConvertSchemaToHTML">
+      </antTask>
+      <antTask
+            library="ant_tasks/pde-ant.jar"
+            name="pde.exportPlugins"
+            class="com.siteview.mde.internal.core.ant.PluginExportTask">
+      </antTask>
+      <antTask
+            library="ant_tasks/pde-ant.jar"
+            name="pde.exportFeatures"
+            class="com.siteview.mde.internal.core.ant.FeatureExportTask">
+      </antTask>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ant.core.extraClasspathEntries">
+      <extraClasspathEntry
+            library="ant_tasks/pde-ant.jar">
+      </extraClasspathEntry>
+   </extension>
+   <extension
+         point="org.eclipse.core.variables.dynamicVariables">
+      <variable
+            description="%target_home.description"
+            name="target_home"
+            resolver="com.siteview.mde.internal.core.variables.TargetHomeDynamicVariableResolver"/>
+      <variable
+            description="%target.os"
+            name="target.os"
+            resolver="com.siteview.mde.internal.core.variables.TargetOSVariableResolver"/>
+      <variable
+            description="%target.ws"
+            name="target.ws"
+            resolver="com.siteview.mde.internal.core.variables.TargetWSVariableResolver"/>
+      <variable
+            description="%target.nl"
+            name="target.nl"
+            resolver="com.siteview.mde.internal.core.variables.TargetNLVariableResolver"/>
+      <variable
+            description="%target.arch"
+            name="target.arch"
+            resolver="com.siteview.mde.internal.core.variables.TargetOSArchVariableResolver"/>
+   </extension>
+   
+      
+<!-- ================================================================================= -->
+<!-- Content Types                                                                     -->
+<!-- ================================================================================= -->
+   <extension 
+   		 point="org.eclipse.core.contenttype.contentTypes">
+      <content-type 
+      		id="com.siteview.mde.pluginManifest" 
+      		name="%pluginManifestName" 
+    		base-type="org.eclipse.core.runtime.xml"
+   			priority="high"				
+    		file-names="plugin.xml">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="plugin"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.fragmentManifest" 
+   	  		name="%fragmentManifestName" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-names="fragment.xml">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="fragment"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.featureManifest" 
+   	  		name="%featureManifestName" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-names="feature.xml">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="feature"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.siteManifest" 
+   	  		name="%siteManifestName" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-names="site.xml">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="site"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.productFile" 
+   	  		name="%productConfiguration" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-extensions="product">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="product"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.targetFile" 
+   	  		name="%target.profile.content" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-extensions="target">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="target"/>
+		</describer>
+	  </content-type>
+   	  <content-type 
+   	  		id="com.siteview.mde.schema" 
+   	  		name="%schemaFile" 
+       		base-type="org.eclipse.core.runtime.xml"
+    		priority="high"				
+    		file-extensions="exsd">
+    	<describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+    		<parameter name="element" value="schema"/>
+		</describer>
+	  </content-type>
+	  <content-type 
+	  		id="com.siteview.mde.pluginProperties" 
+	  		name="%pluginPropertiesName" 
+    		base-type="org.eclipse.jdt.core.javaProperties"
+    		priority="high"				
+    		file-names="plugin.properties"/>
+      <content-type 
+		    id="com.siteview.mde.buildProperties" 
+		    name="%buildPropertiesName" 
+		    base-type="org.eclipse.jdt.core.javaProperties"
+		    priority="high"
+		    file-names="build.properties"/>
+      <content-type 
+		    id="com.siteview.mde.bundleManifest" 
+		    name="%bundleManifest" 
+		    base-type="org.eclipse.jdt.core.JARManifest"
+		    priority="high"
+            describer="com.siteview.mde.internal.core.content.BundleManifestDescriber"/>
+      <file-association
+            content-type="org.eclipse.jdt.core.javaProperties"
+            file-names=".options">
+      </file-association>
+      <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            id="com.siteview.mde.categoryManifest"
+            name="%categoryManifestName"
+            priority="high">
+         <describer
+               class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+            <parameter
+                  name="element"
+                  value="site">
+            </parameter>
+         </describer>
+      </content-type>
+    </extension>
+    <!-- Make sure that the web-tools don't create the document:
+         https://bugs.eclipse.org/bugs/show_bug.cgi?id=307524 -->
+    <extension point="org.eclipse.core.filebuffers.documentCreation">
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.pluginManifest"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.fragmentManifest"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.featureManifest"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.siteManifest"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.productFile"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.targetFile"/>
+      <factory class="com.siteview.mde.internal.core.content.DefaultDocumentFactory"
+               contentTypeId="com.siteview.mde.schema"/>
+    </extension>
+</plugin>
