@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.editor.monitor;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -47,13 +47,13 @@ public class ExtensionPointsPage extends MDEFormPage {
 		protected void registerPages(DetailsPart detailsPart) {
 			detailsPart.setPageProvider(new IDetailsPageProvider() {
 				public Object getPageKey(Object object) {
-					if (object instanceof IPluginExtensionPoint)
-						return IPluginExtensionPoint.class;
+					if (object instanceof IMonitorExtensionPoint)
+						return IMonitorExtensionPoint.class;
 					return object.getClass();
 				}
 
 				public IDetailsPage getPage(Object key) {
-					if (key.equals(IPluginExtensionPoint.class))
+					if (key.equals(IMonitorExtensionPoint.class))
 						return new ExtensionPointDetails();
 					return null;
 				}
@@ -85,9 +85,9 @@ public class ExtensionPointsPage extends MDEFormPage {
 
 	public void updateFormSelection() {
 		super.updateFormSelection();
-		IFormPage page = getMDEEditor().findPage(PluginInputContext.CONTEXT_ID);
-		if (page instanceof ManifestSourcePage) {
-			ISourceViewer viewer = ((ManifestSourcePage) page).getViewer();
+		IFormPage page = getMDEEditor().findPage(MonitorInputContext.CONTEXT_ID);
+		if (page instanceof MonitorSourcePage) {
+			ISourceViewer viewer = ((MonitorSourcePage) page).getViewer();
 			if (viewer == null)
 				return;
 			StyledText text = viewer.getTextWidget();
@@ -97,10 +97,10 @@ public class ExtensionPointsPage extends MDEFormPage {
 			if (offset < 0)
 				return;
 
-			IDocumentRange range = ((ManifestSourcePage) page).getRangeElement(offset, true);
+			IDocumentRange range = ((MonitorSourcePage) page).getRangeElement(offset, true);
 			if (range instanceof IDocumentAttributeNode)
 				range = ((IDocumentAttributeNode) range).getEnclosingElement();
-			if (range instanceof IPluginExtensionPoint)
+			if (range instanceof IMonitorExtensionPoint)
 				fExtensionPointsSection.selectExtensionPoint(new StructuredSelection(range));
 		}
 	}

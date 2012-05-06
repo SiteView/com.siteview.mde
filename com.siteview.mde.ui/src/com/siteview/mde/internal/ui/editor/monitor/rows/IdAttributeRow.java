@@ -11,7 +11,7 @@
 package com.siteview.mde.internal.ui.editor.monitor.rows;
 
 import com.siteview.mde.internal.ui.editor.monitor.ManifestEditor;
-import com.siteview.mde.internal.ui.editor.monitor.PluginInputContext;
+import com.siteview.mde.internal.ui.editor.monitor.MonitorInputContext;
 
 import com.siteview.mde.core.monitor.IMonitorModelBase;
 import com.siteview.mde.core.monitor.MonitorRegistry;
@@ -111,7 +111,7 @@ public class IdAttributeRow extends ButtonAttributeRow {
 			IEditorPart editorPart = ManifestEditor.open(model.getMonitorBase(), true);
 			ManifestEditor editor = (ManifestEditor) editorPart;
 			if (editor != null) {
-				InputContext context = editor.getContextManager().findContext(PluginInputContext.CONTEXT_ID);
+				InputContext context = editor.getContextManager().findContext(MonitorInputContext.CONTEXT_ID);
 				IDocument document = context.getDocumentProvider().getDocument(context.getInput());
 				IRegion region = ManifestEditorOpener.getAttributeMatch(editor, id, document);
 				if (region == null) {

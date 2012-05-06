@@ -331,7 +331,7 @@ public abstract class BundlePluginModelBase extends AbstractNLModel implements I
 		return null;
 	}
 
-	public IPluginExtensionPoint createExtensionPoint() {
+	public IMonitorExtensionPoint createExtensionPoint() {
 		if (fExtensionsModel != null)
 			return fExtensionsModel.getFactory().createExtensionPoint();
 		return null;

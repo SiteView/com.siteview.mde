@@ -12,7 +12,7 @@ package com.siteview.mde.internal.ui.wizards.extension;
 
 import com.siteview.mde.internal.ui.editor.monitor.ManifestEditor;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.core.monitor.IMonitorModelBase;
 
 import org.eclipse.core.resources.IProject;
@@ -23,15 +23,15 @@ public class NewExtensionPointWizard extends NewWizard {
 	private NewExtensionPointMainPage mainPage;
 	private IMonitorModelBase model;
 	private IProject project;
-	private IPluginExtensionPoint point;
+	private IMonitorExtensionPoint point;
 	private ManifestEditor editor;
 
 	public NewExtensionPointWizard(IProject project, IMonitorModelBase model, ManifestEditor editor) {
-		this(project, model, (IPluginExtensionPoint) null);
+		this(project, model, (IMonitorExtensionPoint) null);
 		this.editor = editor;
 	}
 
-	public NewExtensionPointWizard(IProject project, IMonitorModelBase model, IPluginExtensionPoint point) {
+	public NewExtensionPointWizard(IProject project, IMonitorModelBase model, IMonitorExtensionPoint point) {
 		initialize();
 		this.project = project;
 		this.model = model;

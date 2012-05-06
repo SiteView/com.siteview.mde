@@ -20,7 +20,7 @@ import org.eclipse.osgi.service.resolver.VersionRange;
 import com.siteview.mde.core.monitor.IFragment;
 import com.siteview.mde.core.monitor.IMatchRules;
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.internal.core.MDEState;
 import org.w3c.dom.Node;
 
@@ -187,7 +187,7 @@ public class Fragment extends MonitorBase implements IFragment {
 		children = getExtensionPoints();
 		if (children.length > 0) {
 			for (int i = 0; i < children.length; i++) {
-				((IPluginExtensionPoint) children[i]).write(firstIndent, writer);
+				((IMonitorExtensionPoint) children[i]).write(firstIndent, writer);
 			}
 			writer.println();
 		}

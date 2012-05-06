@@ -46,7 +46,7 @@ public class ExtensionElementDetails extends AbstractPluginElementDetails {
 	}
 
 	public String getContextId() {
-		return PluginInputContext.CONTEXT_ID;
+		return MonitorInputContext.CONTEXT_ID;
 	}
 
 	public void fireSaveNeeded() {

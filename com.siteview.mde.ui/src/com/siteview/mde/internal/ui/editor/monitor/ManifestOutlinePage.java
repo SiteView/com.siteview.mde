@@ -52,7 +52,7 @@ public class ManifestOutlinePage extends FormOutlinePage {
 			pageId = RuntimePage.PAGE_ID;
 		else if (item instanceof IMonitorExtension)
 			pageId = ExtensionsPage.PAGE_ID;
-		else if (item instanceof IPluginExtensionPoint)
+		else if (item instanceof IMonitorExtensionPoint)
 			pageId = ExtensionPointsPage.PAGE_ID;
 		else if (item instanceof IBuildEntry)
 			pageId = BuildPage.PAGE_ID;

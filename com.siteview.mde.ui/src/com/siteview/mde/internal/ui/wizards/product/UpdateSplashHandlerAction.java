@@ -145,7 +145,7 @@ public class UpdateSplashHandlerAction extends Action implements ISplashHandlerC
 			// Extra model modifications required for this template
 			// Find the first spash extension point declaration (should only
 			// ever be one)
-			IPluginExtensionPoint extensionPoint = findFirstExtensionPoint(F_SPLASH_EXTENSION_POINT);
+			IMonitorExtensionPoint extensionPoint = findFirstExtensionPoint(F_SPLASH_EXTENSION_POINT);
 			// Check to see if one was found
 			// If one is found, just assume all its values are correct (no sync)
 			if (extensionPoint == null) {
@@ -180,16 +180,16 @@ public class UpdateSplashHandlerAction extends Action implements ISplashHandlerC
 		// Update progress work units
 		fMonitor.beginTask(NLS.bind(MDEUIMessages.UpdateSplashHandlerInModelAction_msgAddingExtensionPoint, F_SPLASH_EXTENSION_POINT), 1);
 		// Create the new extension point
-		IPluginExtensionPoint extensionPoint = createExtensionPointSplash();
+		IMonitorExtensionPoint extensionPoint = createExtensionPointSplash();
 		// Add extension point to the model
 		fModel.getMonitorBase().add(extensionPoint);
 		// Update progress work units
 		fMonitor.done();
 	}
 
-	private IPluginExtensionPoint createExtensionPointSplash() throws CoreException {
+	private IMonitorExtensionPoint createExtensionPointSplash() throws CoreException {
 		// Create the extension point
-		IPluginExtensionPoint extensionPoint = fModel.getFactory().createExtensionPoint();
+		IMonitorExtensionPoint extensionPoint = fModel.getFactory().createExtensionPoint();
 		// ID
 		extensionPoint.setId(F_SPLASH_EXTENSION_POINT);
 		// Name
@@ -213,9 +213,9 @@ public class UpdateSplashHandlerAction extends Action implements ISplashHandlerC
 		return null;
 	}
 
-	private IPluginExtensionPoint findFirstExtensionPoint(String extensionPointID) {
+	private IMonitorExtensionPoint findFirstExtensionPoint(String extensionPointID) {
 		// Get all the extension points
-		IPluginExtensionPoint[] extensionPoints = fModel.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] extensionPoints = fModel.getMonitorBase().getExtensionPoints();
 		// Get the first extension point (should only be one) matching the
 		// specified extension point ID
 		for (int i = 0; i < extensionPoints.length; i++) {

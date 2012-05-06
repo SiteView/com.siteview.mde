@@ -26,7 +26,7 @@ import com.siteview.mde.internal.core.util.VersionUtil;
 import com.siteview.mde.internal.ui.IHelpContextIds;
 import com.siteview.mde.internal.ui.MDEUIMessages;
 import com.siteview.mde.internal.ui.dialogs.PluginSelectionDialog;
-import com.siteview.mde.internal.ui.parts.PluginVersionPart;
+import com.siteview.mde.internal.ui.parts.MonitorVersionPart;
 import com.siteview.mde.internal.ui.util.SWTUtil;
 import com.siteview.mde.internal.ui.wizards.IProjectProvider;
 import org.eclipse.swt.SWT;
@@ -51,7 +51,7 @@ public class FragmentContentPage extends ContentPage {
 	private StackLayout fNotebookLayout;
 	private Composite fOldComp;
 	private Composite fNewComp;
-	private PluginVersionPart fVersionPart;
+	private MonitorVersionPart fVersionPart;
 	private Label fEELabel;
 	private Button fExeEnvButton;
 	private Combo fEEChoice;
@@ -68,7 +68,7 @@ public class FragmentContentPage extends ContentPage {
 		setTitle(MDEUIMessages.ContentPage_ftitle);
 		setDescription(MDEUIMessages.ContentPage_fdesc);
 		updateVersion(false);
-		fVersionPart = new PluginVersionPart(fNewVersion);
+		fVersionPart = new MonitorVersionPart(fNewVersion);
 	}
 
 	/* (non-Javadoc)

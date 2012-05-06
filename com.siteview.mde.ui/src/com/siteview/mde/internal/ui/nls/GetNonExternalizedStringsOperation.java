@@ -159,7 +159,7 @@ public class GetNonExternalizedStringsOperation implements IRunnableWithProgress
 				inspectExtension(schema, extensions[i], model, file);
 		}
 
-		IPluginExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
 		for (int i = 0; i < extensionPoints.length; i++) {
 			inspectExtensionPoint(extensionPoints[i], model, file);
 		}
@@ -203,7 +203,7 @@ public class GetNonExternalizedStringsOperation implements IRunnableWithProgress
 		}
 	}
 
-	private void inspectExtensionPoint(IPluginExtensionPoint extensionPoint, IMonitorModelBase memModel, IFile file) {
+	private void inspectExtensionPoint(IMonitorExtensionPoint extensionPoint, IMonitorModelBase memModel, IFile file) {
 		if (extensionPoint instanceof MonitorExtensionPointNode)
 			if (isNotTranslated(extensionPoint.getName()))
 				fModelChangeTable.addToChangeTable(memModel, file, ((MonitorExtensionPointNode) extensionPoint).getNodeAttributesMap().get(IMonitorObject.P_NAME), selected(file));

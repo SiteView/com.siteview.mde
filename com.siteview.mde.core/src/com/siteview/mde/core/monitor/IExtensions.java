@@ -46,13 +46,13 @@ public interface IExtensions extends IMonitorObject {
 	 * @param extensionPoint the extension point
 	 * @throws CoreException if the model is not editable
 	 */
-	void add(IPluginExtensionPoint extensionPoint) throws CoreException;
+	void add(IMonitorExtensionPoint extensionPoint) throws CoreException;
 
 	/**
 	 * Returns extension points defined in this object.
 	 * @return an array of extension point objects
 	 */
-	IPluginExtensionPoint[] getExtensionPoints();
+	IMonitorExtensionPoint[] getExtensionPoints();
 
 	/**
 	 * Returns extensions defined in this object.
@@ -79,7 +79,7 @@ public interface IExtensions extends IMonitorObject {
 	 * @param extensionPoint the extension point object
 	 * @throws CoreException if the model is not editable
 	 */
-	void remove(IPluginExtensionPoint extensionPoint) throws CoreException;
+	void remove(IMonitorExtensionPoint extensionPoint) throws CoreException;
 
 	/**
 	 * Swaps the positions of the provided extensions

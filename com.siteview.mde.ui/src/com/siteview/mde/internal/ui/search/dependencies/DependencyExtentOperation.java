@@ -81,13 +81,13 @@ public class DependencyExtentOperation {
 	}
 
 	private void checkForExtensionPointsUsed(IMonitorModelBase model) {
-		IPluginExtensionPoint[] extPoints = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] extPoints = model.getMonitorBase().getExtensionPoints();
 		for (int i = 0; i < extPoints.length; i++) {
 			findMatches(extPoints[i]);
 		}
 	}
 
-	private void findMatches(IPluginExtensionPoint point) {
+	private void findMatches(IMonitorExtensionPoint point) {
 		String fullID = point.getFullId();
 		if (fullID == null)
 			return;

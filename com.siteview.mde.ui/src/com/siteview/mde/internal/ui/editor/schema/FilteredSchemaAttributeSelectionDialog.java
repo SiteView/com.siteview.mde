@@ -179,7 +179,7 @@ public class FilteredSchemaAttributeSelectionDialog extends FilteredItemsSelecti
 		// cycle through all active plug-ins and their extension points
 		progressMonitor.beginTask(MDEUIMessages.FilteredSchemaAttributeSelectionDialog_searching, models.length);
 		for (int i = 0; i < models.length; i++) {
-			IPluginExtensionPoint[] points = models[i].getMonitorBase().getExtensionPoints();
+			IMonitorExtensionPoint[] points = models[i].getMonitorBase().getExtensionPoints();
 
 			for (int j = 0; j < points.length; j++) {
 				String pointID = IdUtil.getFullId(points[j], models[i]);

@@ -88,7 +88,7 @@ public class FeatureExportOperation extends Job {
 
 			if (fInfo.exportSource && fInfo.exportSourceBundle) {
 				// create a feature to contain all plug-ins and features depth first
-				String featureID = "org.eclipse.pde.container.feature"; //$NON-NLS-1$
+				String featureID = "com.siteview.mde.container.feature"; //$NON-NLS-1$
 				String fFeatureLocation = fBuildTempLocation + File.separator + featureID;
 				createFeature(featureID, fFeatureLocation, fInfo.items, null, null, null);
 				ExternalFeatureModel model = new ExternalFeatureModel();

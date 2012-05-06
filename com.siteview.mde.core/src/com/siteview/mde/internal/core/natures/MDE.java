@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import com.siteview.mde.internal.core.MDECore;
 
 public class MDE {
-	public static final String PLUGIN_ID = "org.eclipse.pde"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.siteview.mde"; //$NON-NLS-1$
 
 	public static final String MANIFEST_BUILDER_ID = PLUGIN_ID + "." + "ManifestBuilder"; //$NON-NLS-1$ //$NON-NLS-2$
 	public static final String SCHEMA_BUILDER_ID = PLUGIN_ID + "." + "SchemaBuilder"; //$NON-NLS-1$ //$NON-NLS-2$

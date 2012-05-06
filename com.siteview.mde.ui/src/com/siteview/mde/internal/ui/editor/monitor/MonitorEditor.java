@@ -62,23 +62,23 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		return IMDEUIConstants.MONITOR_EDITOR_ID;
 	}
 
-	public static IEditorPart openPluginEditor(String id) {
-		return openPluginEditor(MonitorRegistry.findModel(id));
+	public static IEditorPart openMonitorEditor(String id) {
+		return openMonitorEditor(MonitorRegistry.findModel(id));
 	}
 
 	public static IEditorPart openPluginEditor(BundleDescription bd) {
-		return openPluginEditor(MonitorRegistry.findModel(bd));
+		return openMonitorEditor(MonitorRegistry.findModel(bd));
 	}
 
-	public static IEditorPart openPluginEditor(IMonitorModelBase model) {
+	public static IEditorPart openMonitorEditor(IMonitorModelBase model) {
 		if (model == null) {
 			Display.getDefault().beep();
 			return null;
 		}
-		return openPluginEditor(model, false);
+		return openMonitorEditor(model, false);
 	}
 
-	public static IEditorPart openPluginEditor(IMonitorModelBase model, boolean source) {
+	public static IEditorPart openMonitorEditor(IMonitorModelBase model, boolean source) {
 		return open(model.getMonitorBase(), source);
 	}
 
@@ -90,7 +90,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 				model = ((IBundlePluginModelProvider) model).getBundlePluginModel();
 			if (model instanceof IMonitorModelBase) {
 				String filename = ((IMonitorModelBase) model).isFragmentModel() ? ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR : ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR;
-				if (!(object instanceof IMonitorExtension) && !(object instanceof IPluginExtensionPoint)) {
+				if (!(object instanceof IMonitorExtension) && !(object instanceof IMonitorExtensionPoint)) {
 					String installLocation = model.getInstallLocation();
 					if (installLocation == null)
 						return null;
@@ -191,7 +191,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		}
 		if (pluginFile.exists()) {
 			FileEditorInput in = new FileEditorInput(pluginFile);
-			manager.putContext(in, new PluginInputContext(this, in, file == pluginFile, fragment));
+			manager.putContext(in, new MonitorInputContext(this, in, file == pluginFile, fragment));
 		}
 		if (buildFile.exists()) {
 			FileEditorInput in = new FileEditorInput(buildFile);
@@ -224,14 +224,14 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 				fInputContextManager.putContext(in, new BundleInputContext(this, in, false));
 			}
 		} else if (name.equalsIgnoreCase(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR)) {
-			if (!fInputContextManager.hasContext(PluginInputContext.CONTEXT_ID)) {
+			if (!fInputContextManager.hasContext(MonitorInputContext.CONTEXT_ID)) {
 				IEditorInput in = new FileEditorInput(file);
-				fInputContextManager.putContext(in, new PluginInputContext(this, in, false, false));
+				fInputContextManager.putContext(in, new MonitorInputContext(this, in, false, false));
 			}
 		} else if (name.equalsIgnoreCase(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR)) {
-			if (!fInputContextManager.hasContext(PluginInputContext.CONTEXT_ID)) {
+			if (!fInputContextManager.hasContext(MonitorInputContext.CONTEXT_ID)) {
 				IEditorInput in = new FileEditorInput(file);
-				fInputContextManager.putContext(in, new PluginInputContext(this, in, false, true));
+				fInputContextManager.putContext(in, new MonitorInputContext(this, in, false, true));
 			}
 		} else if (name.equalsIgnoreCase(ICoreConstants.BUILD_FILENAME_DESCRIPTOR)) {
 			if (!fInputContextManager.hasContext(BuildInputContext.CONTEXT_ID)) {
@@ -242,7 +242,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 	}
 
 	public void ensurePluginContextPresence() {
-		if (fInputContextManager.hasContext(PluginInputContext.CONTEXT_ID))
+		if (fInputContextManager.hasContext(MonitorInputContext.CONTEXT_ID))
 			return;
 		IProject project = fInputContextManager.getCommonProject();
 		WorkspaceMonitorModelBase model = null;
@@ -262,7 +262,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		}
 		model.save();
 		IEditorInput in = new FileEditorInput(file);
-		fInputContextManager.putContext(in, new PluginInputContext(this, in, false, false));
+		fInputContextManager.putContext(in, new MonitorInputContext(this, in, false, false));
 
 		updateBuildProperties(file.getName());
 	}
@@ -355,7 +355,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 			if (pluginFile.exists()) {
 				IFileStore store = EFS.getStore(pluginFile.toURI());
 				IEditorInput in = new FileStoreEditorInput(store);
-				manager.putContext(in, new PluginInputContext(this, in, file == pluginFile, name.equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR)));
+				manager.putContext(in, new MonitorInputContext(this, in, file == pluginFile, name.equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR)));
 			}
 			if (buildFile.exists()) {
 				IFileStore store = EFS.getStore(buildFile.toURI());
@@ -393,9 +393,9 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		} else if (name.startsWith(ICoreConstants.BUILD_FILENAME_DESCRIPTOR)) {
 			manager.putContext(input, new BuildInputContext(this, input, true));
 		} else if (name.startsWith(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR)) {
-			manager.putContext(input, new PluginInputContext(this, input, true, false));
+			manager.putContext(input, new MonitorInputContext(this, input, true, false));
 		} else if (name.startsWith(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR)) {
-			manager.putContext(input, new PluginInputContext(this, input, true, true));
+			manager.putContext(input, new MonitorInputContext(this, input, true, true));
 		}
 	}
 
@@ -413,10 +413,10 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 
 			if (zip.getEntry(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR) != null) {
 				input = new JarEntryEditorInput(new JarEntryFile(zip, ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR));
-				manager.putContext(input, new PluginInputContext(this, input, storage.getName().equals(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR), false));
+				manager.putContext(input, new MonitorInputContext(this, input, storage.getName().equals(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR), false));
 			} else if (zip.getEntry(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR) != null) {
 				input = new JarEntryEditorInput(new JarEntryFile(zip, ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR));
-				manager.putContext(input, new PluginInputContext(this, input, storage.getName().equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR), true));
+				manager.putContext(input, new MonitorInputContext(this, input, storage.getName().equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR), true));
 			}
 
 			if (zip.getEntry(ICoreConstants.BUILD_FILENAME_DESCRIPTOR) != null) {
@@ -446,9 +446,9 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		} catch (PartInitException e) {
 			MDEPlugin.logException(e);
 		}
-//		addSourcePage(BundleInputContext.CONTEXT_ID);
-//		addSourcePage(PluginInputContext.CONTEXT_ID);
-//		addSourcePage(BuildInputContext.CONTEXT_ID);
+		addSourcePage(BundleInputContext.CONTEXT_ID);
+		addSourcePage(MonitorInputContext.CONTEXT_ID);
+		addSourcePage(BuildInputContext.CONTEXT_ID);
 	}
 
 	private boolean isSourcePageID(String pageID) {
@@ -458,7 +458,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		} else if (pageID.equals(BuildInputContext.CONTEXT_ID)) {
 			// build.properites
 			return true;
-		} else if (pageID.equals(PluginInputContext.CONTEXT_ID)) {
+		} else if (pageID.equals(MonitorInputContext.CONTEXT_ID)) {
 			// plugin.xml
 			return true;
 		} else if (pageID.equals(BundleInputContext.CONTEXT_ID)) {
@@ -563,8 +563,8 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 	 * @see org.eclipse.pde.internal.ui.neweditor.MultiSourceEditor#createXMLSourcePage(org.eclipse.pde.internal.ui.neweditor.PDEFormEditor, java.lang.String, java.lang.String)
 	 */
 	protected MDESourcePage createSourcePage(MDEFormEditor editor, String title, String name, String contextId) {
-		if (contextId.equals(PluginInputContext.CONTEXT_ID))
-			return new ManifestSourcePage(editor, title, name);
+		if (contextId.equals(MonitorInputContext.CONTEXT_ID))
+			return new MonitorSourcePage(editor, title, name);
 		if (contextId.equals(BuildInputContext.CONTEXT_ID))
 			return new BuildSourcePage(editor, title, name);
 		if (contextId.equals(BundleInputContext.CONTEXT_ID))
@@ -618,19 +618,19 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 		if (object instanceof IFile) {
 			String name = ((IFile) object).getName();
 			if (name.equals(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR) || name.equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR))
-				context = fInputContextManager.findContext(PluginInputContext.CONTEXT_ID);
+				context = fInputContextManager.findContext(MonitorInputContext.CONTEXT_ID);
 			else if (name.equals(ICoreConstants.MANIFEST_FILENAME))
 				context = fInputContextManager.findContext(BundleInputContext.CONTEXT_ID);
 			else if (name.equals(ICoreConstants.BUILD_FILENAME_DESCRIPTOR))
 				context = fInputContextManager.findContext(BuildInputContext.CONTEXT_ID);
 		} else if (object instanceof IBuildObject) {
 			context = fInputContextManager.findContext(BuildInputContext.CONTEXT_ID);
-		} else if (object instanceof IPluginExtensionPoint || object instanceof IMonitorExtension) {
-			context = fInputContextManager.findContext(PluginInputContext.CONTEXT_ID);
+		} else if (object instanceof IMonitorExtensionPoint || object instanceof IMonitorExtension) {
+			context = fInputContextManager.findContext(MonitorInputContext.CONTEXT_ID);
 		} else {
 			context = fInputContextManager.findContext(BundleInputContext.CONTEXT_ID);
 			if (context == null)
-				context = fInputContextManager.findContext(PluginInputContext.CONTEXT_ID);
+				context = fInputContextManager.findContext(MonitorInputContext.CONTEXT_ID);
 		}
 		return context;
 	}
@@ -645,9 +645,9 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 			if (!BuildInputContext.CONTEXT_ID.equals(id))
 				setActivePage(SHOW_SOURCE ? BuildInputContext.CONTEXT_ID : BuildPage.PAGE_ID);
 		} else if (name.equals(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR) || name.equals(ICoreConstants.FRAGMENT_FILENAME_DESCRIPTOR)) {
-			if (!PluginInputContext.CONTEXT_ID.equals(id)) {
+			if (!MonitorInputContext.CONTEXT_ID.equals(id)) {
 				if (SHOW_SOURCE) {
-					setActivePage(PluginInputContext.CONTEXT_ID);
+					setActivePage(MonitorInputContext.CONTEXT_ID);
 				} else if (fInputContextManager.hasContext(BundleInputContext.CONTEXT_ID)) {
 					setActivePage(ExtensionsPage.PAGE_ID);
 				} else {
@@ -660,7 +660,7 @@ public class MonitorEditor extends MDELauncherFormEditor implements IShowEditorI
 	}
 
 	public boolean showExtensionTabs() {
-		if (fInputContextManager.hasContext(PluginInputContext.CONTEXT_ID))
+		if (fInputContextManager.hasContext(MonitorInputContext.CONTEXT_ID))
 			return true;
 		IBaseModel model = getAggregateModel();
 		return fShowExtensions && model != null && model.isEditable();

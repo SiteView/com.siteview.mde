@@ -59,7 +59,7 @@ public class PluginArtifactSearchHandler extends AbstractHandler {
 	private InputContext getInputContext(Object object, ManifestEditor editor) {
 		if (object instanceof BaseDescription)
 			return editor.getContextManager().findContext(BundleInputContext.CONTEXT_ID);
-		return editor.getContextManager().findContext(PluginInputContext.CONTEXT_ID);
+		return editor.getContextManager().findContext(MonitorInputContext.CONTEXT_ID);
 	}
 
 }

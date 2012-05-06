@@ -31,7 +31,7 @@ import org.eclipse.update.configurator.ConfiguratorUtils;
 import org.osgi.framework.*;
 
 public class MDECore extends Plugin {
-	public static final String PLUGIN_ID = "org.eclipse.pde.core"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.siteview.mde.core"; //$NON-NLS-1$
 
 	public static final IPath REQUIRED_PLUGINS_CONTAINER_PATH = new Path(PLUGIN_ID + ".requiredPlugins"); //$NON-NLS-1$
 	public static final IPath JAVA_SEARCH_CONTAINER_PATH = new Path(PLUGIN_ID + ".externalJavaSearch"); //$NON-NLS-1$

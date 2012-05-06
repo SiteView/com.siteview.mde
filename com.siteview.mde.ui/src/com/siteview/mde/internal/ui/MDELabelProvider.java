@@ -75,8 +75,8 @@ public class MDELabelProvider extends SharedLabelProvider {
 		if (obj instanceof IMonitorExtension) {
 			return getObjectText((IMonitorExtension) obj);
 		}
-		if (obj instanceof IPluginExtensionPoint) {
-			return getObjectText((IPluginExtensionPoint) obj);
+		if (obj instanceof IMonitorExtensionPoint) {
+			return getObjectText((IMonitorExtensionPoint) obj);
 		}
 		if (obj instanceof NamedElement) {
 			return ((NamedElement) obj).getLabel();
@@ -165,7 +165,7 @@ public class MDELabelProvider extends SharedLabelProvider {
 		return preventNull(isFullNameModeEnabled() ? extension.getTranslatedName() : extension.getPoint());
 	}
 
-	public String getObjectText(IPluginExtensionPoint point) {
+	public String getObjectText(IMonitorExtensionPoint point) {
 		return preventNull(isFullNameModeEnabled() ? point.getTranslatedName() : point.getId());
 	}
 
@@ -374,8 +374,8 @@ public class MDELabelProvider extends SharedLabelProvider {
 		if (obj instanceof IMonitorExtension) {
 			return getObjectImage((IMonitorExtension) obj);
 		}
-		if (obj instanceof IPluginExtensionPoint) {
-			return getObjectImage((IPluginExtensionPoint) obj);
+		if (obj instanceof IMonitorExtensionPoint) {
+			return getObjectImage((IMonitorExtensionPoint) obj);
 		}
 		if (obj instanceof NamedElement) {
 			return ((NamedElement) obj).getImage();
@@ -591,7 +591,7 @@ public class MDELabelProvider extends SharedLabelProvider {
 		return get(MDEPluginImages.DESC_EXTENSION_OBJ);
 	}
 
-	private Image getObjectImage(IPluginExtensionPoint point) {
+	private Image getObjectImage(IMonitorExtensionPoint point) {
 		return get(MDEPluginImages.DESC_EXT_POINT_OBJ);
 	}
 

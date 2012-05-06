@@ -29,7 +29,7 @@ import com.siteview.mde.core.monitor.IMonitorObject;
 import com.siteview.mde.core.monitor.IMonitorAttribute;
 import com.siteview.mde.core.monitor.IMonitorElement;
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.internal.core.AbstractNLModel;
 import com.siteview.mde.internal.core.MDEState;
 import org.xml.sax.SAXException;
@@ -130,7 +130,7 @@ public abstract class AbstractExtensionsModel extends AbstractNLModel implements
 		return extension;
 	}
 
-	public IPluginExtensionPoint createExtensionPoint() {
+	public IMonitorExtensionPoint createExtensionPoint() {
 		MonitorExtensionPoint extensionPoint = new MonitorExtensionPoint();
 		extensionPoint.setModel(this);
 		extensionPoint.setParent(getExtensions());

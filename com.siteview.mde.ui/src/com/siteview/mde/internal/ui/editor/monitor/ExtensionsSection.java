@@ -39,7 +39,7 @@ import com.siteview.mde.internal.ui.editor.actions.SortAction;
 import com.siteview.mde.internal.ui.editor.contentassist.XMLElementProposalComputer;
 import com.siteview.mde.internal.ui.elements.DefaultContentProvider;
 import com.siteview.mde.internal.ui.parts.TreePart;
-import com.siteview.mde.internal.ui.search.PluginSearchActionGroup;
+import com.siteview.mde.internal.ui.search.MonitorSearchActionGroup;
 import com.siteview.mde.internal.ui.util.SWTUtil;
 import com.siteview.mde.internal.ui.wizards.extension.ExtensionEditorWizard;
 import com.siteview.mde.internal.ui.wizards.extension.NewExtensionWizard;
@@ -360,7 +360,7 @@ public class ExtensionsSection extends TreeSection implements IModelChangedListe
 			}
 			manager.add(new Separator());
 			if (object instanceof IMonitorExtension) {
-				PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+				MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 				actionGroup.setContext(new ActionContext(selection));
 				actionGroup.fillContextMenu(manager);
 				manager.add(new Separator());

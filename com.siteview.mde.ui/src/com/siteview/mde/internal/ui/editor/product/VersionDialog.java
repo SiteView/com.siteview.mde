@@ -12,7 +12,7 @@ package com.siteview.mde.internal.ui.editor.product;
 
 import org.eclipse.jface.dialogs.StatusDialog;
 import com.siteview.mde.internal.ui.MDEUIMessages;
-import com.siteview.mde.internal.ui.parts.PluginVersionPart;
+import com.siteview.mde.internal.ui.parts.MonitorVersionPart;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.*;
@@ -21,12 +21,12 @@ public class VersionDialog extends StatusDialog {
 
 	private String fVersion;
 	private boolean fEditable;
-	private PluginVersionPart fVersionPart;
+	private MonitorVersionPart fVersionPart;
 
 	public VersionDialog(Shell parent, boolean editable, String version) {
 		super(parent);
 		fEditable = editable;
-		fVersionPart = new PluginVersionPart(false) {
+		fVersionPart = new MonitorVersionPart(false) {
 			protected String getGroupText() {
 				return MDEUIMessages.VersionDialog_text;
 			}

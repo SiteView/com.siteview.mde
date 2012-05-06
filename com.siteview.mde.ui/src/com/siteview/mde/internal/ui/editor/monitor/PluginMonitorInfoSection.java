@@ -115,7 +115,7 @@ public class PluginMonitorInfoSection extends MonitorInfoSection {
 		fClassEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					((IMonitor) getPluginBase()).setClassName(entry.getValue());
+					((IMonitor) getMonitorBase()).setClassName(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -141,7 +141,7 @@ public class PluginMonitorInfoSection extends MonitorInfoSection {
 	}
 
 	private void doOpenSelectionDialog(String className) {
-		IResource resource = getPluginBase().getModel().getUnderlyingResource();
+		IResource resource = getMonitorBase().getModel().getUnderlyingResource();
 		String type = PDEJavaHelperUI.selectType(resource, IJavaElementSearchConstants.CONSIDER_CLASSES, className, null);
 		if (type != null)
 			fClassEntry.setValue(type);

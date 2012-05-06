@@ -66,7 +66,7 @@ public class ImportActionGroup extends ActionGroup {
 		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
 			IStructuredSelection sSelection = (IStructuredSelection) selection;
 			String menuName = null;
-			if (sSelection.getFirstElement() instanceof IMonitorExtension || sSelection.getFirstElement() instanceof IPluginExtensionPoint)
+			if (sSelection.getFirstElement() instanceof IMonitorExtension || sSelection.getFirstElement() instanceof IMonitorExtensionPoint)
 				menuName = MDEUIMessages.ImportActionGroup_importContributingPlugin;
 			else
 				menuName = MDEUIMessages.PluginsView_import;
@@ -142,8 +142,8 @@ public class ImportActionGroup extends ActionGroup {
 			model = ((IMonitorBase) next).getMonitorModel();
 		else if (next instanceof IMonitorExtension)
 			model = ((IMonitorExtension) next).getMonitorModel();
-		else if (next instanceof IPluginExtensionPoint)
-			model = ((IPluginExtensionPoint) next).getMonitorModel();
+		else if (next instanceof IMonitorExtensionPoint)
+			model = ((IMonitorExtensionPoint) next).getMonitorModel();
 		return model;
 	}
 }

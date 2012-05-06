@@ -37,7 +37,7 @@ import com.siteview.mde.internal.ui.editor.TableSection;
 import com.siteview.mde.internal.ui.editor.actions.SortAction;
 import com.siteview.mde.internal.ui.elements.DefaultTableProvider;
 import com.siteview.mde.internal.ui.parts.TablePart;
-import com.siteview.mde.internal.ui.search.PluginSearchActionGroup;
+import com.siteview.mde.internal.ui.search.MonitorSearchActionGroup;
 import com.siteview.mde.internal.ui.search.dependencies.UnusedDependenciesAction;
 import com.siteview.mde.internal.ui.util.SWTUtil;
 import org.eclipse.swt.SWT;
@@ -341,7 +341,7 @@ public class RequiresSection extends TableSection implements IModelChangedListen
 		getPage().getMDEEditor().getContributor().contextMenuAboutToShow(manager);
 		manager.add(new Separator());
 
-		PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+		MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 		actionGroup.setContext(new ActionContext(selection));
 		actionGroup.fillContextMenu(manager);
 		if (((IModel) getPage().getModel()).getUnderlyingResource() != null) {

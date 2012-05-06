@@ -21,13 +21,13 @@ import com.siteview.mde.internal.ui.MDEUIMessages;
 
 public class NewExtensionPointMainPage extends BaseExtensionPointMainPage {
 	private IMonitorModelBase fModel;
-	private IPluginExtensionPoint fPoint;
+	private IMonitorExtensionPoint fPoint;
 
 	public NewExtensionPointMainPage(IProject project, IMonitorModelBase model) {
 		this(project, model, null);
 	}
 
-	public NewExtensionPointMainPage(IProject project, IMonitorModelBase model, IPluginExtensionPoint point) {
+	public NewExtensionPointMainPage(IProject project, IMonitorModelBase model, IMonitorExtensionPoint point) {
 		super(project);
 		initialize();
 		this.fModel = model;
@@ -51,7 +51,7 @@ public class NewExtensionPointMainPage extends BaseExtensionPointMainPage {
 
 		IMonitorBase plugin = fModel.getMonitorBase();
 
-		IPluginExtensionPoint point = fModel.getFactory().createExtensionPoint();
+		IMonitorExtensionPoint point = fModel.getFactory().createExtensionPoint();
 		try {
 			point.setId(id);
 			if (name.length() > 0)

@@ -48,5 +48,5 @@ public interface IExtensionsModelFactory {
 	 *
 	 * @return a new extension point 
 	 */
-	IPluginExtensionPoint createExtensionPoint();
+	IMonitorExtensionPoint createExtensionPoint();
 }

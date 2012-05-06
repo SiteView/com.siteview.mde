@@ -51,8 +51,8 @@ public class PluginSearchResultPage extends AbstractSearchResultPage {
 				return extension.getPoint() + " - " + extension.getMonitorBase().getId(); //$NON-NLS-1$
 			}
 
-			if (object instanceof IPluginExtensionPoint)
-				return ((IPluginExtensionPoint) object).getFullId();
+			if (object instanceof IMonitorExtensionPoint)
+				return ((IMonitorExtensionPoint) object).getFullId();
 
 			return MDEPlugin.getDefault().getLabelProvider().getText(object);
 		}
@@ -71,7 +71,7 @@ public class PluginSearchResultPage extends AbstractSearchResultPage {
 		mgr.add(new Separator());
 		IStructuredSelection selection = (IStructuredSelection) getViewer().getSelection();
 		ActionContext context = new ActionContext(selection);
-		PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+		MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 		actionGroup.setContext(context);
 		actionGroup.fillContextMenu(mgr);
 		if (ImportActionGroup.canImport(selection)) {

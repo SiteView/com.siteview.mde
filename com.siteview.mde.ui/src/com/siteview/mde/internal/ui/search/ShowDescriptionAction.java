@@ -11,7 +11,7 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.search;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import com.siteview.mde.internal.core.ICoreConstants;
 
@@ -49,17 +49,17 @@ public class ShowDescriptionAction extends Action {
 		initialize();
 	}
 
-	public ShowDescriptionAction(IPluginExtensionPoint point) {
+	public ShowDescriptionAction(IMonitorExtensionPoint point) {
 		this(point, false);
 	}
 
-	public ShowDescriptionAction(IPluginExtensionPoint point, boolean forceExternal) {
+	public ShowDescriptionAction(IMonitorExtensionPoint point, boolean forceExternal) {
 		setExtensionPoint(point.getFullId());
 		fForceExternal = forceExternal;
 		initialize();
 	}
 
-	public ShowDescriptionAction(IPluginExtensionPoint point, String pointID) {
+	public ShowDescriptionAction(IMonitorExtensionPoint point, String pointID) {
 		setExtensionPoint(pointID);
 		fForceExternal = false;
 		initialize();
@@ -87,7 +87,7 @@ public class ShowDescriptionAction extends Action {
 
 	public void run() {
 		if (fSchema == null) {
-			IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fPointID);
+			IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fPointID);
 			URL url = null;
 			if (point != null) {
 				url = SchemaRegistry.getSchemaURL(point);

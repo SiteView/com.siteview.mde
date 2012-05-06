@@ -505,7 +505,7 @@ public class BundlePluginBase extends PlatformObject implements IBundlePluginBas
 	 * 
 	 * @see org.eclipse.pde.core.plugin.IExtensions#add(org.eclipse.pde.core.plugin.IPluginExtensionPoint)
 	 */
-	public void add(IPluginExtensionPoint point) throws CoreException {
+	public void add(IMonitorExtensionPoint point) throws CoreException {
 		ensureModelEditable();
 		IExtensions extensions = getExtensionsRoot();
 		if (extensions == null)
@@ -526,10 +526,10 @@ public class BundlePluginBase extends PlatformObject implements IBundlePluginBas
 	 * 
 	 * @see org.eclipse.pde.core.plugin.IExtensions#getExtensionPoints()
 	 */
-	public IPluginExtensionPoint[] getExtensionPoints() {
+	public IMonitorExtensionPoint[] getExtensionPoints() {
 		IExtensions extensions = getExtensionsRoot();
 		if (extensions == null)
-			return new IPluginExtensionPoint[0];
+			return new IMonitorExtensionPoint[0];
 		return extensions.getExtensionPoints();
 	}
 
@@ -573,7 +573,7 @@ public class BundlePluginBase extends PlatformObject implements IBundlePluginBas
 	 * 
 	 * @see org.eclipse.pde.core.plugin.IExtensions#remove(org.eclipse.pde.core.plugin.IPluginExtensionPoint)
 	 */
-	public void remove(IPluginExtensionPoint extensionPoint) throws CoreException {
+	public void remove(IMonitorExtensionPoint extensionPoint) throws CoreException {
 		ensureModelEditable();
 		IExtensions extensions = getExtensionsRoot();
 		if (extensions != null) {

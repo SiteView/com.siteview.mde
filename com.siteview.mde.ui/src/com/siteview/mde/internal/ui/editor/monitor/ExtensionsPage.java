@@ -133,9 +133,9 @@ public class ExtensionsPage extends MDEFormPage {
 
 	public void updateFormSelection() {
 		super.updateFormSelection();
-		IFormPage page = getMDEEditor().findPage(PluginInputContext.CONTEXT_ID);
-		if (page instanceof ManifestSourcePage) {
-			ISourceViewer viewer = ((ManifestSourcePage) page).getViewer();
+		IFormPage page = getMDEEditor().findPage(MonitorInputContext.CONTEXT_ID);
+		if (page instanceof MonitorSourcePage) {
+			ISourceViewer viewer = ((MonitorSourcePage) page).getViewer();
 			if (viewer == null)
 				return;
 			StyledText text = viewer.getTextWidget();
@@ -145,7 +145,7 @@ public class ExtensionsPage extends MDEFormPage {
 			if (offset < 0)
 				return;
 
-			IDocumentRange range = ((ManifestSourcePage) page).getRangeElement(offset, true);
+			IDocumentRange range = ((MonitorSourcePage) page).getRangeElement(offset, true);
 			if (range instanceof IDocumentAttributeNode)
 				range = ((IDocumentAttributeNode) range).getEnclosingElement();
 			else if (range instanceof IDocumentTextNode)

@@ -50,7 +50,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.navigator.ResourceComparator;
 
 public class ExtensionPointDetails extends MDEDetails {
-	private IPluginExtensionPoint fInput;
+	private IMonitorExtensionPoint fInput;
 	private FormEntry fIdEntry;
 	private FormEntry fNameEntry;
 	private FormEntry fSchemaEntry;
@@ -64,7 +64,7 @@ public class ExtensionPointDetails extends MDEDetails {
 	}
 
 	public String getContextId() {
-		return PluginInputContext.CONTEXT_ID;
+		return MonitorInputContext.CONTEXT_ID;
 	}
 
 	public void fireSaveNeeded() {
@@ -235,7 +235,7 @@ public class ExtensionPointDetails extends MDEDetails {
 				}
 				if (pointID == null)
 					pointID = pluginID + "." + fInput.getId(); //$NON-NLS-1$
-				IPluginExtensionPoint extPoint = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(pointID);
+				IMonitorExtensionPoint extPoint = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(pointID);
 				if (e.getHref().equals("search")) { //$NON-NLS-1$
 					new FindReferencesAction(fInput, pluginID).run();
 				} else if (e.getHref().equals("open")) { //$NON-NLS-1$					
@@ -365,7 +365,7 @@ public class ExtensionPointDetails extends MDEDetails {
 	public void selectionChanged(IFormPart masterPart, ISelection selection) {
 		IStructuredSelection ssel = (IStructuredSelection) selection;
 		if (ssel.size() == 1) {
-			fInput = (IPluginExtensionPoint) ssel.getFirstElement();
+			fInput = (IMonitorExtensionPoint) ssel.getFirstElement();
 		} else
 			fInput = null;
 		update();

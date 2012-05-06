@@ -125,7 +125,7 @@ public class RenameExtensionPointProcessor extends RefactoringProcessor {
 					return;
 				IMonitorModelBase modelBase = (IMonitorModelBase) model;
 				IMonitorBase base = modelBase.getMonitorBase();
-				IPluginExtensionPoint[] points = base.getExtensionPoints();
+				IMonitorExtensionPoint[] points = base.getExtensionPoints();
 				for (int i = 0; i < points.length; i++) {
 					if (points[i].getId().equals(fInfo.getCurrentValue())) {
 						points[i].setId(fInfo.getNewValue());

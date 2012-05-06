@@ -91,7 +91,7 @@ public class OverviewPage extends LaunchShortcutOverviewPage {
 		right.setLayout(FormLayoutFactory.createFormPaneTableWrapLayout(false, 1));
 		right.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 		createContentSection(managedForm, right, toolkit);
-		if (isEditable() || getMDEEditor().hasInputContext(PluginInputContext.CONTEXT_ID))
+		if (isEditable() || getMDEEditor().hasInputContext(MonitorInputContext.CONTEXT_ID))
 			createExtensionSection(managedForm, right, toolkit);
 		if (isEditable()) {
 			createTestingSection(managedForm, isBundle() ? right : left, toolkit);

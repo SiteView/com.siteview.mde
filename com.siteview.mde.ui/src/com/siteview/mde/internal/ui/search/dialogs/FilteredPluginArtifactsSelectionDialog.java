@@ -81,8 +81,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 				return extension.getPoint() + " - " + extension.getMonitorBase().getId(); //$NON-NLS-1$
 			}
 
-			if (object instanceof IPluginExtensionPoint)
-				return ((IPluginExtensionPoint) object).getFullId();
+			if (object instanceof IMonitorExtensionPoint)
+				return ((IMonitorExtensionPoint) object).getFullId();
 
 			if (object instanceof ExportPackageDescription) {
 				ExportPackageDescription epd = (ExportPackageDescription) object;
@@ -117,8 +117,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 			if (element instanceof IMonitorModelBase) {
 				IMonitorModelBase model = (IMonitorModelBase) element;
 				return getImage(model.getInstallLocation());
-			} else if (element instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint model = (IPluginExtensionPoint) element;
+			} else if (element instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint model = (IMonitorExtensionPoint) element;
 				return getImage(model.getModel().getInstallLocation());
 			} else if (element instanceof IMonitorExtension) {
 				IMonitorExtension model = (IMonitorExtension) element;
@@ -140,8 +140,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 			if (element instanceof IMonitorModelBase) {
 				IMonitorModelBase model = (IMonitorModelBase) element;
 				return model.getInstallLocation();
-			} else if (element instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint model = (IPluginExtensionPoint) element;
+			} else if (element instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint model = (IMonitorExtensionPoint) element;
 				return model.getModel().getInstallLocation();
 			} else if (element instanceof IMonitorExtension) {
 				IMonitorExtension model = (IMonitorExtension) element;
@@ -194,7 +194,7 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 			if (enabled) // select everything
 				return true;
 
-			if (element instanceof IPluginExtensionPoint) {
+			if (element instanceof IMonitorExtensionPoint) {
 				return false;
 			}
 			return true;
@@ -359,7 +359,7 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 		// cycle through all the models and grab entries 
 		for (int i = 0; i < models.length; i++) {
 			IMonitorModelBase model = models[i];
-			IPluginExtensionPoint[] eps = model.getMonitorBase().getExtensionPoints();
+			IMonitorExtensionPoint[] eps = model.getMonitorBase().getExtensionPoints();
 			IMonitorExtension[] extensions = model.getMonitorBase().getExtensions();
 			int length = eps.length + extensions.length;
 			SubProgressMonitor subMonitor = new SubProgressMonitor(progressMonitor, length);
@@ -414,8 +414,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 		if (item instanceof IMonitorModelBase) {
 			IMonitorModelBase model = (IMonitorModelBase) item;
 			return model.getMonitorBase().getId();
-		} else if (item instanceof IPluginExtensionPoint) {
-			IPluginExtensionPoint model = (IPluginExtensionPoint) item;
+		} else if (item instanceof IMonitorExtensionPoint) {
+			IMonitorExtensionPoint model = (IMonitorExtensionPoint) item;
 			return model.getFullId();
 		} else if (item instanceof IMonitorExtension) {
 			IMonitorExtension model = (IMonitorExtension) item;
@@ -514,10 +514,10 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 					model = getModel(memento);
 					if (model == null)
 						return null;
-					IPluginExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
+					IMonitorExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
 					String epid = memento.getString(M_ID);
 					for (int i = 0; i < points.length; i++) {
-						IPluginExtensionPoint point = points[i];
+						IMonitorExtensionPoint point = points[i];
 						if (epid.equals(point.getFullId()))
 							return point;
 					}
@@ -589,8 +589,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 				memento.putInteger(M_TYPE, TYPE_PLUGIN);
 				memento.putString(M_PLUGIN_ID, model.getMonitorBase().getId());
 				memento.putString(M_PLUGIN_VERSION, model.getMonitorBase().getVersion());
-			} else if (item instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint model = (IPluginExtensionPoint) item;
+			} else if (item instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint model = (IMonitorExtensionPoint) item;
 				memento.putInteger(M_TYPE, TYPE_EXTENSION_POINT);
 				memento.putString(M_ID, model.getFullId());
 				memento.putString(M_PLUGIN_ID, model.getMonitorBase().getId());
@@ -629,8 +629,8 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 			if (item instanceof IMonitorModelBase) {
 				IMonitorModelBase model = (IMonitorModelBase) item;
 				id = model.getMonitorBase().getId();
-			} else if (item instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint model = (IPluginExtensionPoint) item;
+			} else if (item instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint model = (IMonitorExtensionPoint) item;
 				id = model.getFullId();
 			} else if (item instanceof IMonitorExtension) {
 				IMonitorExtension model = (IMonitorExtension) item;
@@ -683,7 +683,7 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 		private int getId(Object element) {
 			if (element instanceof IMonitorModelBase) {
 				return 100;
-			} else if (element instanceof IPluginExtensionPoint) {
+			} else if (element instanceof IMonitorExtensionPoint) {
 				return 200;
 			} else if (element instanceof IMonitorExtension) {
 				return 300;
@@ -700,9 +700,9 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 				IMonitorModelBase ipmb1 = (IMonitorModelBase) o1;
 				IMonitorModelBase ipmb2 = (IMonitorModelBase) o2;
 				return comparePlugins(ipmb1.getMonitorBase(), ipmb2.getMonitorBase());
-			} else if (o1 instanceof IPluginExtensionPoint && o2 instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint ipep1 = (IPluginExtensionPoint) o1;
-				IPluginExtensionPoint ipep2 = (IPluginExtensionPoint) o2;
+			} else if (o1 instanceof IMonitorExtensionPoint && o2 instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint ipep1 = (IMonitorExtensionPoint) o1;
+				IMonitorExtensionPoint ipep2 = (IMonitorExtensionPoint) o2;
 				return compareExtensionPoints(ipep1, ipep2);
 			} else if (o1 instanceof IMonitorExtension && o2 instanceof IMonitorExtension) {
 				IMonitorExtension ipe1 = (IMonitorExtension) o1;
@@ -732,7 +732,7 @@ public class FilteredPluginArtifactsSelectionDialog extends FilteredItemsSelecti
 			return ipmb1.getId().compareTo(ipmb2.getId());
 		}
 
-		private int compareExtensionPoints(IPluginExtensionPoint ipep1, IPluginExtensionPoint ipep2) {
+		private int compareExtensionPoints(IMonitorExtensionPoint ipep1, IMonitorExtensionPoint ipep2) {
 			return ipep1.getFullId().compareTo(ipep2.getFullId());
 		}
 

@@ -70,7 +70,7 @@ public class PluginXMLTextHover extends PDETextHover {
 				} catch (BadLocationException e) {
 				}
 			}
-		} else if (range instanceof IDocumentAttributeNode && ((IDocumentAttributeNode) range).getEnclosingElement() instanceof IPluginExtensionPoint)
+		} else if (range instanceof IDocumentAttributeNode && ((IDocumentAttributeNode) range).getEnclosingElement() instanceof IMonitorExtensionPoint)
 			return getExtensionPointHoverInfo((IMonitorObject) range, offset);
 
 		return null;

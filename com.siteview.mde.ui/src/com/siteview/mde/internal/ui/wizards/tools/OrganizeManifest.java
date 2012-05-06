@@ -325,7 +325,7 @@ public class OrganizeManifest implements IOrganizeManifestsSettings {
 		if (model == null)
 			return;
 
-		IPluginExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
 		for (int i = 0; i < points.length; i++) {
 			String value = getTranslatedKey(points[i].getName());
 			if (value != null && !list.contains(value))

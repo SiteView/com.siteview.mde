@@ -28,7 +28,7 @@ import com.siteview.mde.internal.ui.editor.actions.MDEActionConstants;
 import com.siteview.mde.internal.ui.elements.DefaultContentProvider;
 import com.siteview.mde.internal.ui.refactoring.PDERefactoringAction;
 import com.siteview.mde.internal.ui.refactoring.RefactoringActionFactory;
-import com.siteview.mde.internal.ui.search.PluginSearchActionGroup;
+import com.siteview.mde.internal.ui.search.MonitorSearchActionGroup;
 import com.siteview.mde.internal.ui.util.SharedLabelProvider;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Image;
@@ -36,14 +36,14 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.actions.ActionContext;
 
-public class ManifestSourcePage extends XMLSourcePage {
+public class MonitorSourcePage extends XMLSourcePage {
 
 	private Object fLibraries = new Object();
 	private Object fImports = new Object();
 	private Object fExtensionPoints = new Object();
 	private Object fExtensions = new Object();
 	private ExtensionAttributePointDectector fDetector;
-	private PluginSearchActionGroup fActionGroup;
+	private MonitorSearchActionGroup fActionGroup;
 	private PDERefactoringAction fRenameAction;
 
 	class OutlineLabelProvider extends LabelProvider {
@@ -171,10 +171,10 @@ public class ManifestSourcePage extends XMLSourcePage {
 		}
 	}
 
-	public ManifestSourcePage(MDEFormEditor editor, String id, String title) {
+	public MonitorSourcePage(MDEFormEditor editor, String id, String title) {
 		super(editor, id, title);
 		fDetector = new ExtensionAttributePointDectector();
-		fActionGroup = new PluginSearchActionGroup();
+		fActionGroup = new MonitorSearchActionGroup();
 	}
 
 	public ILabelProvider createOutlineLabelProvider() {
@@ -264,7 +264,7 @@ public class ManifestSourcePage extends XMLSourcePage {
 		Point p = text.getSelection();
 		IDocumentRange element = getRangeElement(p.x, false);
 
-		if (!(element instanceof IPluginExtensionPoint))
+		if (!(element instanceof IMonitorExtensionPoint))
 			return;
 
 		if (isEditable()) {

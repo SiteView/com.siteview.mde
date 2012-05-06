@@ -11,14 +11,14 @@
 package com.siteview.mde.internal.launching;
 
 public interface IPDEConstants {
-	String PLUGIN_ID = "org.eclipse.pde.launching"; //$NON-NLS-1$
-	String UI_PLUGIN_ID = "org.eclipse.pde.ui"; //$NON-NLS-1$
+	String PLUGIN_ID = "com.siteview.mde.launching"; //$NON-NLS-1$
+	String UI_PLUGIN_ID = "com.siteview.mde.ui"; //$NON-NLS-1$
 
 	// JUnit application identifiers
-	String LEGACY_UI_TEST_APPLICATION = "org.eclipse.pde.junit.runtime.legacytestapplication"; //$NON-NLS-1$
-	String NON_UI_THREAD_APPLICATION = "org.eclipse.pde.junit.runtime.nonuithreadtestapplication"; //$NON-NLS-1$
-	String UI_TEST_APPLICATION = "org.eclipse.pde.junit.runtime.uitestapplication"; //$NON-NLS-1$
-	String CORE_TEST_APPLICATION = "org.eclipse.pde.junit.runtime.coretestapplication"; //$NON-NLS-1$
+	String LEGACY_UI_TEST_APPLICATION = "com.siteview.mde.junit.runtime.legacytestapplication"; //$NON-NLS-1$
+	String NON_UI_THREAD_APPLICATION = "com.siteview.mde.junit.runtime.nonuithreadtestapplication"; //$NON-NLS-1$
+	String UI_TEST_APPLICATION = "com.siteview.mde.junit.runtime.uitestapplication"; //$NON-NLS-1$
+	String CORE_TEST_APPLICATION = "com.siteview.mde.junit.runtime.coretestapplication"; //$NON-NLS-1$
 
 	/**
 	 * Launch configuration attribute key. The value is a boolean specifies

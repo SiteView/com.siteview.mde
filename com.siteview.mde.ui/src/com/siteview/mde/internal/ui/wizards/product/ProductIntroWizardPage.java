@@ -222,7 +222,7 @@ public class ProductIntroWizardPage extends WizardPage implements IHyperlinkList
 
 	public void linkActivated(HyperlinkEvent e) {
 		String extPoint = "org.eclipse.ui." + e.getHref().toString(); //$NON-NLS-1$
-		IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(extPoint);
+		IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(extPoint);
 		if (point != null)
 			new ShowDescriptionAction(point, true).run();
 

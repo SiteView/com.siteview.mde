@@ -45,7 +45,7 @@ public class MonitorUndoManager extends ModelUndoManager {
 			return RuntimePage.PAGE_ID;
 		if (obj instanceof IMonitorExtension || (obj instanceof IMonitorElement && ((IMonitorElement) obj).getParent() instanceof IMonitorParent) || obj instanceof IMonitorAttribute)
 			return ExtensionsPage.PAGE_ID;
-		if (obj instanceof IPluginExtensionPoint)
+		if (obj instanceof IMonitorExtensionPoint)
 			return ExtensionPointsPage.PAGE_ID;
 		return null;
 	}
@@ -101,8 +101,8 @@ public class MonitorUndoManager extends ModelUndoManager {
 					pluginBase.add((IMonitorImport) element);
 				} else if (element instanceof IMonitorLibrary) {
 					pluginBase.add((IMonitorLibrary) element);
-				} else if (element instanceof IPluginExtensionPoint) {
-					pluginBase.add((IPluginExtensionPoint) element);
+				} else if (element instanceof IMonitorExtensionPoint) {
+					pluginBase.add((IMonitorExtensionPoint) element);
 				} else if (element instanceof IMonitorExtension) {
 					pluginBase.add((IMonitorExtension) element);
 				} else if (element instanceof IMonitorElement) {
@@ -150,8 +150,8 @@ public class MonitorUndoManager extends ModelUndoManager {
 					pluginBase.remove((IMonitorImport) element);
 				} else if (element instanceof IMonitorLibrary) {
 					pluginBase.remove((IMonitorLibrary) element);
-				} else if (element instanceof IPluginExtensionPoint) {
-					pluginBase.remove((IPluginExtensionPoint) element);
+				} else if (element instanceof IMonitorExtensionPoint) {
+					pluginBase.remove((IMonitorExtensionPoint) element);
 				} else if (element instanceof IMonitorExtension) {
 					pluginBase.remove((IMonitorExtension) element);
 				} else if (element instanceof IMonitorElement) {

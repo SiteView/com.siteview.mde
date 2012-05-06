@@ -13,7 +13,7 @@ package com.siteview.mde.internal.core.monitor;
 import java.io.PrintWriter;
 
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 public class Extensions extends AbstractExtensions {
 
@@ -58,7 +58,7 @@ public class Extensions extends AbstractExtensions {
 		if (children.length > 0)
 			writer.println();
 		for (int i = 0; i < children.length; i++) {
-			((IPluginExtensionPoint) children[i]).write(firstIndent, writer);
+			((IMonitorExtensionPoint) children[i]).write(firstIndent, writer);
 		}
 
 		// add extensions

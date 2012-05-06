@@ -17,7 +17,7 @@ import org.eclipse.osgi.service.resolver.BundleDescription;
 
 import com.siteview.mde.core.monitor.IMonitor;
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.internal.core.MDEState;
 import org.w3c.dom.Node;
 
@@ -117,7 +117,7 @@ public class Monitor extends MonitorBase implements IMonitor {
 
 		children = getExtensionPoints();
 		for (int i = 0; i < children.length; i++) {
-			((IPluginExtensionPoint) children[i]).write(firstIndent, writer);
+			((IMonitorExtensionPoint) children[i]).write(firstIndent, writer);
 		}
 		if (children.length > 0)
 			writer.println();

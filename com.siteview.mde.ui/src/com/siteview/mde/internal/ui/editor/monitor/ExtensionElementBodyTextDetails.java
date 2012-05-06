@@ -282,7 +282,7 @@ public class ExtensionElementBodyTextDetails extends AbstractPluginElementDetail
 	 * @see org.eclipse.pde.internal.ui.editor.IContextPart#getContextId()
 	 */
 	public String getContextId() {
-		return PluginInputContext.CONTEXT_ID;
+		return MonitorInputContext.CONTEXT_ID;
 	}
 
 	/* (non-Javadoc)

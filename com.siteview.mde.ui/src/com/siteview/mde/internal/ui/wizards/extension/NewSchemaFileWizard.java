@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.wizards.extension;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
@@ -25,14 +25,14 @@ import org.eclipse.ui.IWorkbench;
 public class NewSchemaFileWizard extends Wizard implements INewWizard {
 	private NewSchemaFileMainPage mainPage;
 	private IContainer container;
-	private IPluginExtensionPoint point;
+	private IMonitorExtensionPoint point;
 	private boolean isPluginIdFinal;
 
 	public NewSchemaFileWizard() {
 		this(null, null, false);
 	}
 
-	public NewSchemaFileWizard(IProject project, IPluginExtensionPoint point, boolean isFinalPluginId) {
+	public NewSchemaFileWizard(IProject project, IMonitorExtensionPoint point, boolean isFinalPluginId) {
 		initialize();
 		this.container = project;
 		this.point = point;

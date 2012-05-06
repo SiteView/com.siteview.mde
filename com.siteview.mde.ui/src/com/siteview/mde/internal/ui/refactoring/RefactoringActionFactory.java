@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.refactoring;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.core.monitor.IMonitorModelBase;
 
 import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
@@ -55,15 +55,15 @@ public class RefactoringActionFactory {
 		return new RefactoringInfo() {
 
 			public IMonitorModelBase getBase() {
-				if (fSelection instanceof IPluginExtensionPoint) {
-					return ((IPluginExtensionPoint) fSelection).getMonitorModel();
+				if (fSelection instanceof IMonitorExtensionPoint) {
+					return ((IMonitorExtensionPoint) fSelection).getMonitorModel();
 				}
 				return null;
 			}
 
 			public String getCurrentValue() {
-				if (fSelection instanceof IPluginExtensionPoint) {
-					return ((IPluginExtensionPoint) fSelection).getId();
+				if (fSelection instanceof IMonitorExtensionPoint) {
+					return ((IMonitorExtensionPoint) fSelection).getId();
 				}
 				return null;
 			}

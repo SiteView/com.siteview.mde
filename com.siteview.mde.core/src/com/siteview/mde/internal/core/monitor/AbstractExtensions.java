@@ -29,7 +29,7 @@ import com.siteview.mde.core.monitor.IExtensions;
 import com.siteview.mde.core.monitor.IMonitorObject;
 import com.siteview.mde.core.monitor.IMonitorBase;
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.core.monitor.ISharedMonitorModel;
 import com.siteview.mde.internal.core.MDECore;
 import com.siteview.mde.internal.core.MDECoreMessages;
@@ -58,7 +58,7 @@ public abstract class AbstractExtensions extends MonitorObject implements IExten
 		fireStructureChanged(extension, IModelChangedEvent.INSERT);
 	}
 
-	public void add(IPluginExtensionPoint extensionPoint) throws CoreException {
+	public void add(IMonitorExtensionPoint extensionPoint) throws CoreException {
 		ensureModelEditable();
 		getExtensionPointsList().add(extensionPoint);
 		((MonitorExtensionPoint) extensionPoint).setInTheModel(true);
@@ -66,9 +66,9 @@ public abstract class AbstractExtensions extends MonitorObject implements IExten
 		fireStructureChanged(extensionPoint, IModelChangedEvent.INSERT);
 	}
 
-	public IPluginExtensionPoint[] getExtensionPoints() {
+	public IMonitorExtensionPoint[] getExtensionPoints() {
 		List extPoints = getExtensionPointsList();
-		return (IPluginExtensionPoint[]) extPoints.toArray(new IPluginExtensionPoint[extPoints.size()]);
+		return (IMonitorExtensionPoint[]) extPoints.toArray(new IMonitorExtensionPoint[extPoints.size()]);
 	}
 
 	public IMonitorExtension[] getExtensions() {
@@ -105,7 +105,7 @@ public abstract class AbstractExtensions extends MonitorObject implements IExten
 		fireStructureChanged(extension, IModelChangedEvent.REMOVE);
 	}
 
-	public void remove(IPluginExtensionPoint extensionPoint) throws CoreException {
+	public void remove(IMonitorExtensionPoint extensionPoint) throws CoreException {
 		ensureModelEditable();
 		getExtensionPointsList().remove(extensionPoint);
 		((MonitorExtensionPoint) extensionPoint).setInTheModel(false);
@@ -163,7 +163,7 @@ public abstract class AbstractExtensions extends MonitorObject implements IExten
 		List extPoints = getExtensionPointsList();
 		size = extPoints.size();
 		for (int i = 0; i < size; i++) {
-			IPluginExtensionPoint expoint = (IPluginExtensionPoint) extPoints.get(i);
+			IMonitorExtensionPoint expoint = (IMonitorExtensionPoint) extPoints.get(i);
 			if (!expoint.isValid())
 				return false;
 		}

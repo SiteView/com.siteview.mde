@@ -47,7 +47,7 @@ public abstract class XMLUtil {
 			// not an attribute/text node/element -> return direct node
 			return (IMonitorObject) range;
 
-		while (node != null && !(node instanceof IMonitorExtension) && !(node instanceof IPluginExtensionPoint))
+		while (node != null && !(node instanceof IMonitorExtension) && !(node instanceof IMonitorExtensionPoint))
 			node = node.getParentNode();
 
 		return node != null ? (IMonitorObject) node : null;

@@ -29,7 +29,7 @@ import org.eclipse.swt.graphics.Point;
 
 public class ExtensionAttributePointDectector implements MouseListener, KeyListener {
 
-	private ManifestSourcePage fSourcePage;
+	private MonitorSourcePage fSourcePage;
 
 	private StyledText fStyledText;
 
@@ -45,7 +45,7 @@ public class ExtensionAttributePointDectector implements MouseListener, KeyListe
 		return fSelection;
 	}
 
-	public void setTextEditor(ManifestSourcePage editor) {
+	public void setTextEditor(MonitorSourcePage editor) {
 		fSourcePage = editor;
 		// Get the new styled text widget
 		ISourceViewer viewer = fSourcePage.getViewer();

@@ -18,7 +18,7 @@ import com.siteview.mde.core.monitor.*;
 
 import org.w3c.dom.Node;
 
-public class MonitorExtensionPoint extends IdentifiableMonitorObject implements IPluginExtensionPoint {
+public class MonitorExtensionPoint extends IdentifiableMonitorObject implements IMonitorExtensionPoint {
 
 	private static final long serialVersionUID = 1L;
 
@@ -70,8 +70,8 @@ public class MonitorExtensionPoint extends IdentifiableMonitorObject implements 
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
-		if (obj instanceof IPluginExtensionPoint) {
-			IPluginExtensionPoint target = (IPluginExtensionPoint) obj;
+		if (obj instanceof IMonitorExtensionPoint) {
+			IMonitorExtensionPoint target = (IMonitorExtensionPoint) obj;
 			// Objects from the same model must be
 			// binary equal
 			if (target.getModel().equals(getModel()))

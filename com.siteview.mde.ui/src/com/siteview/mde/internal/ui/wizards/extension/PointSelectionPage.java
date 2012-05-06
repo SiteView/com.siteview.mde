@@ -63,7 +63,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 
 	private IMonitorModelBase fModel;
 	private Button fFilterCheck;
-	private IPluginExtensionPoint fCurrentPoint;
+	private IMonitorExtensionPoint fCurrentPoint;
 	private HashSet fAvailableImports;
 	private IProject fProject;
 	private Label fTemplateLabel;
@@ -84,7 +84,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 			if (!fFilterCheck.getSelection())
 				return true;
 
-			IPluginExtensionPoint point = (IPluginExtensionPoint) element;
+			IMonitorExtensionPoint point = (IMonitorExtensionPoint) element;
 			if (point instanceof MonitorExtensionPointNode)
 				return true;
 
@@ -116,8 +116,8 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 
 	class TemplateContentProvider extends DefaultContentProvider implements IStructuredContentProvider {
 		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof IPluginExtensionPoint) {
-				IPluginExtensionPoint point = (IPluginExtensionPoint) inputElement;
+			if (inputElement instanceof IMonitorExtensionPoint) {
+				IMonitorExtensionPoint point = (IMonitorExtensionPoint) inputElement;
 				String pointID = IdUtil.getFullId(point, fModel);
 				ArrayList result = new ArrayList();
 				if (fTemplateCollection.getWizards() != null) {
@@ -141,7 +141,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 			ArrayList extPoints = new ArrayList();
 			IMonitorModelBase[] plugins = MonitorRegistry.getActiveModels();
 			for (int i = 0; i < plugins.length; i++) {
-				IPluginExtensionPoint[] points = plugins[i].getMonitorBase().getExtensionPoints();
+				IMonitorExtensionPoint[] points = plugins[i].getMonitorBase().getExtensionPoints();
 				String id = plugins[i].getMonitorBase().getId();
 				if (id.equals(fModel.getMonitorBase().getId()))
 					continue;
@@ -149,7 +149,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 					extPoints.add(points[j]);
 			}
 
-			IPluginExtensionPoint[] points = fModel.getMonitorBase().getExtensionPoints();
+			IMonitorExtensionPoint[] points = fModel.getMonitorBase().getExtensionPoints();
 			for (int i = 0; i < points.length; i++)
 				extPoints.add(points[i]);
 
@@ -163,7 +163,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 		}
 
 		public String getColumnText(Object obj, int index) {
-			IPluginExtensionPoint extPoint = (IPluginExtensionPoint) obj;
+			IMonitorExtensionPoint extPoint = (IMonitorExtensionPoint) obj;
 			MDELabelProvider provider = MDEPlugin.getDefault().getLabelProvider();
 			if (provider.isFullNameModeEnabled())
 				return provider.getText(extPoint);
@@ -176,7 +176,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 		}
 
 		public Image getColumnImage(Object obj, int index) {
-			IPluginExtensionPoint exp = (IPluginExtensionPoint) obj;
+			IMonitorExtensionPoint exp = (IMonitorExtensionPoint) obj;
 
 			if (((TemplateContentProvider) fTemplateViewer.getContentProvider()).getElements(exp).length > 0) {
 				return MDEPlugin.getDefault().getLabelProvider().get(MDEPluginImages.DESC_NEWEXP_WIZ_TOOL, 0);
@@ -487,8 +487,8 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 				Object element = ssel.getFirstElement();
 				if (element instanceof WizardElement)
 					handleTemplateSelection((WizardElement) element);
-				else if (element instanceof IPluginExtensionPoint)
-					handlePointSelection((IPluginExtensionPoint) element);
+				else if (element instanceof IMonitorExtensionPoint)
+					handlePointSelection((IMonitorExtensionPoint) element);
 			} else {
 				setDescription(""); //$NON-NLS-1$
 				setDescriptionText(""); //$NON-NLS-1$
@@ -509,7 +509,7 @@ public class PointSelectionPage extends BaseWizardSelectionPage {
 		setPageComplete(false);
 	}
 
-	private void handlePointSelection(IPluginExtensionPoint element) {
+	private void handlePointSelection(IMonitorExtensionPoint element) {
 		fCurrentPoint = element;
 		fTemplateViewer.setInput(fCurrentPoint);
 		fTemplateViewer.setSelection(StructuredSelection.EMPTY);

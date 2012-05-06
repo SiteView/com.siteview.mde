@@ -42,7 +42,7 @@ public abstract class MonitorModelBase extends XMLEditingModel implements IMonit
 	/* (non-Javadoc)
 	 * @see org.eclipse.pde.core.plugin.IPluginModelBase#createPluginBase()
 	 */
-	public IMonitorBase createPluginBase(boolean isFragment) {
+	public IMonitorBase createMonitorBase(boolean isFragment) {
 		if (isFragment) {
 			fPluginBase = new FragmentNode();
 			fPluginBase.setXMLTagName("fragment"); //$NON-NLS-1$
@@ -60,7 +60,7 @@ public abstract class MonitorModelBase extends XMLEditingModel implements IMonit
 	}
 
 	public IMonitorBase createMonitorBase() {
-		return createPluginBase(isFragmentModel());
+		return createMonitorBase(isFragmentModel());
 	}
 
 	/* (non-Javadoc)

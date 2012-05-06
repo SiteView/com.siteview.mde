@@ -59,7 +59,7 @@ public class PluginInputContextManager extends InputContextManager {
 				buildAdded(context);
 			else
 				buildRemoved(context);
-		} else if (context.getId().equals(PluginInputContext.CONTEXT_ID)) {
+		} else if (context.getId().equals(MonitorInputContext.CONTEXT_ID)) {
 			if (added)
 				pluginAdded(context);
 			else
@@ -87,7 +87,7 @@ public class PluginInputContextManager extends InputContextManager {
 	}
 
 	private IModel findPluginModel() {
-		InputContext pcontext = findContext(PluginInputContext.CONTEXT_ID);
+		InputContext pcontext = findContext(MonitorInputContext.CONTEXT_ID);
 		return (pcontext != null) ? (IModel) pcontext.getModel() : null;
 	}
 

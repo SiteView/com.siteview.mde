@@ -105,7 +105,7 @@ public abstract class MonitorInfoSection extends MDESection {
 
 	protected abstract void createSpecificControls(Composite parent, FormToolkit toolkit, IActionBars actionBars);
 
-	protected IMonitorBase getPluginBase() {
+	protected IMonitorBase getMonitorBase() {
 		IBaseModel model = getPage().getMDEEditor().getAggregateModel();
 		return ((IMonitorModelBase) model).getMonitorBase();
 	}
@@ -147,7 +147,7 @@ public abstract class MonitorInfoSection extends MDESection {
 		fIdEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					getPluginBase().setId(entry.getValue());
+					getMonitorBase().setId(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -172,7 +172,7 @@ public abstract class MonitorInfoSection extends MDESection {
 		fVersionEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					getPluginBase().setVersion(entry.getValue());
+					getMonitorBase().setVersion(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -201,7 +201,7 @@ public abstract class MonitorInfoSection extends MDESection {
 		fNameEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					getPluginBase().setName(entry.getValue());
+					getMonitorBase().setName(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -226,7 +226,7 @@ public abstract class MonitorInfoSection extends MDESection {
 		fProviderEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					getPluginBase().setProviderName(entry.getValue());
+					getMonitorBase().setProviderName(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}

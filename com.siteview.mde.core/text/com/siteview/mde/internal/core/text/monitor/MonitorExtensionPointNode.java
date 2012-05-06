@@ -13,10 +13,10 @@ package com.siteview.mde.internal.core.text.monitor;
 import java.io.PrintWriter;
 import org.eclipse.core.runtime.CoreException;
 import com.siteview.mde.core.IModel;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.internal.core.text.IDocumentElementNode;
 
-public class MonitorExtensionPointNode extends MonitorObjectNode implements IPluginExtensionPoint {
+public class MonitorExtensionPointNode extends MonitorObjectNode implements IMonitorExtensionPoint {
 
 	private static final long serialVersionUID = 1L;
 

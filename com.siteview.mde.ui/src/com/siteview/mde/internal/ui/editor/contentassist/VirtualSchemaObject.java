@@ -11,7 +11,7 @@
 
 package com.siteview.mde.internal.ui.editor.contentassist;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import java.io.PrintWriter;
 import java.net.URL;
@@ -39,14 +39,14 @@ public class VirtualSchemaObject implements ISchemaObject {
 	public String getDescription() {
 		if (fDescription instanceof String) {
 			return (String) fDescription;
-		} else if (fDescription instanceof IPluginExtensionPoint) {
+		} else if (fDescription instanceof IMonitorExtensionPoint) {
 			// Making the description an Object was necessary to defer
 			// the retrieval of the schema description String to
 			// only when it is need - instead of ahead of time.
 			// Retrieval of the String involves reparsing the schema from
 			// file which is has a huge performance cost during content
 			// assist sessions.
-			return getSchemaDescription((IPluginExtensionPoint) fDescription);
+			return getSchemaDescription((IMonitorExtensionPoint) fDescription);
 		}
 		return null;
 	}
@@ -81,7 +81,7 @@ public class VirtualSchemaObject implements ISchemaObject {
 		fType = type;
 	}
 
-	private String getSchemaDescription(IPluginExtensionPoint point) {
+	private String getSchemaDescription(IMonitorExtensionPoint point) {
 		String description = null;
 		if (point != null) {
 			description = XMLComponentRegistry.Instance().getDescription(point.getFullId(), XMLComponentRegistry.F_SCHEMA_COMPONENT);

@@ -40,7 +40,7 @@ import org.osgi.framework.*;
 
 public class P2TargetUtils {
 
-	private static final String SOURCE_IU_ID = "org.eclipse.pde.core.target.source.bundles"; //$NON-NLS-1$
+	private static final String SOURCE_IU_ID = "com.siteview.mde.core.target.source.bundles"; //$NON-NLS-1$
 
 	/**
 	 * URI to the local directory where the p2 agent keeps its information.

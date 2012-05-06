@@ -399,7 +399,7 @@ public class ExtensionsErrorReporter extends ManifestErrorReporter {
 		}
 
 		// Validate the "schema" attribute of the extension point
-		Attr attr = element.getAttributeNode(IPluginExtensionPoint.P_SCHEMA);
+		Attr attr = element.getAttributeNode(IMonitorExtensionPoint.P_SCHEMA);
 		// Only validate the attribute if it was defined
 		if (attr != null) {
 			String schemaValue = attr.getValue();

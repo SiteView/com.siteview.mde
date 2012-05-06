@@ -102,7 +102,7 @@ public class ExtensionDetails extends AbstractPluginElementDetails {
 				} else {
 					if (input == null || input.getPoint() == null)
 						return;
-					IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(input.getPoint());
+					IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(input.getPoint());
 					if (point != null) {
 						ShowDescriptionAction showDescAction = new ShowDescriptionAction(point);
 						showDescAction.run();
@@ -298,7 +298,7 @@ public class ExtensionDetails extends AbstractPluginElementDetails {
 	 * @see org.eclipse.pde.internal.ui.neweditor.IContextPart#getContextId()
 	 */
 	public String getContextId() {
-		return PluginInputContext.CONTEXT_ID;
+		return MonitorInputContext.CONTEXT_ID;
 	}
 
 	public MDEFormPage getPage() {

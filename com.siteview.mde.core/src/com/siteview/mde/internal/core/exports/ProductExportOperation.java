@@ -100,7 +100,7 @@ public class ProductExportOperation extends FeatureExportOperation {
 			monitor.beginTask("", 10); //$NON-NLS-1$
 			try {
 				// create a feature to wrap all plug-ins and features
-				String featureID = "org.eclipse.pde.container.feature"; //$NON-NLS-1$
+				String featureID = "com.siteview.mde.container.feature"; //$NON-NLS-1$
 				fFeatureLocation = fBuildTempLocation + File.separator + featureID;
 
 				createFeature(featureID, fFeatureLocation, configurations, fProduct.includeLaunchers());

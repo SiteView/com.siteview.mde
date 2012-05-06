@@ -16,7 +16,7 @@ import com.siteview.mde.core.monitor.IMonitorObject;
 import com.siteview.mde.core.monitor.IMonitorAttribute;
 import com.siteview.mde.core.monitor.IMonitorElement;
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 import com.siteview.mde.core.monitor.IMonitorImport;
 import com.siteview.mde.core.monitor.IMonitorLibrary;
 import com.siteview.mde.core.monitor.IMonitorModelFactory;
@@ -79,7 +79,7 @@ public class MonitorDocumentNodeFactory implements IMonitorModelFactory, IDocume
 	}
 
 	private MonitorBaseNode createPluginBase(String name) {
-		return (MonitorBaseNode) fModel.createPluginBase(name.equals("fragment")); //$NON-NLS-1$
+		return (MonitorBaseNode) fModel.createMonitorBase(name.equals("fragment")); //$NON-NLS-1$
 
 	}
 
@@ -139,7 +139,7 @@ public class MonitorDocumentNodeFactory implements IMonitorModelFactory, IDocume
 	/* (non-Javadoc)
 	 * @see org.eclipse.pde.core.plugin.IExtensionsModelFactory#createExtensionPoint()
 	 */
-	public IPluginExtensionPoint createExtensionPoint() {
+	public IMonitorExtensionPoint createExtensionPoint() {
 		MonitorExtensionPointNode node = new MonitorExtensionPointNode();
 		node.setModel(fModel);
 		node.setXMLTagName("extension-point"); //$NON-NLS-1$

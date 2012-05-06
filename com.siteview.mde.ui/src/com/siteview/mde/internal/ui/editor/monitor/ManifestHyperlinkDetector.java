@@ -47,8 +47,8 @@ public class ManifestHyperlinkDetector extends MDEHyperlinkDetector {
 		IRegion linkRegion = new Region(attr.getValueOffset(), attr.getValueLength());
 
 		IHyperlink[] link = new IHyperlink[1];
-		if (node instanceof IPluginExtensionPoint) {
-			if (attr.getAttributeName().equals(IPluginExtensionPoint.P_SCHEMA))
+		if (node instanceof IMonitorExtensionPoint) {
+			if (attr.getAttributeName().equals(IMonitorExtensionPoint.P_SCHEMA))
 				link[0] = new SchemaHyperlink(linkRegion, attrValue, res);
 			else if (attr.getAttributeName().equals(IMonitorObject.P_NAME))
 				if (attrValue.charAt(0) == '%')

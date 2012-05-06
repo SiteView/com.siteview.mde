@@ -12,7 +12,7 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.preferences;
 
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.preferences.*;
@@ -121,7 +121,7 @@ public class OSGiFrameworkPreferencePage extends PreferencePage implements IWork
 		Composite comp = SWTFactory.createComposite(parent, 2, 1, GridData.FILL_BOTH);
 
 		Link text = new Link(comp, SWT.WRAP);
-		final IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(OSGiFrameworkManager.POINT_ID);
+		final IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(OSGiFrameworkManager.POINT_ID);
 		text.setText((point != null && SchemaRegistry.getSchemaURL(point) != null) ? MDEUIMessages.OSGiFrameworkPreferencePage_installed : MDEUIMessages.OSGiFrameworkPreferencePage_installed_nolink);
 		GridData gd = new GridData();
 		gd.horizontalSpan = 2;

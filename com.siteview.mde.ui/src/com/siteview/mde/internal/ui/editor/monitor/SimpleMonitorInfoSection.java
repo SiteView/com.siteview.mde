@@ -81,7 +81,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 		fPluginIdEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					((IFragment) getPluginBase()).setPluginId(fPluginIdEntry.getValue());
+					((IFragment) getMonitorBase()).setPluginId(fPluginIdEntry.getValue());
 				} catch (CoreException e1) {
 					MDEPlugin.logException(e1);
 				}
@@ -92,7 +92,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 				if (!(MonitorRegistry.findModel(plugin) instanceof IMonitorModel)) {
 					createFragmentPlugin();
 				}
-				MonitorEditor.openPluginEditor(fPluginIdEntry.getValue());
+				MonitorEditor.openMonitorEditor(fPluginIdEntry.getValue());
 			}
 
 			public void browseButtonSelected(FormEntry entry) {
@@ -108,7 +108,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 				if (dialog.open() == Window.OK) {
 					String plugin = wizard.getPluginId();
 					try {
-						((IFragment) getPluginBase()).setPluginId(plugin);
+						((IFragment) getMonitorBase()).setPluginId(plugin);
 						fPluginIdEntry.setValue(plugin, false);
 					} catch (CoreException ce) {
 						MDEPlugin.logException(ce);
@@ -137,9 +137,9 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 			IMonitorModel model = (IMonitorModel) dialog.getFirstResult();
 			IMonitor plugin = model.getMonitor();
 			try {
-				((IFragment) getPluginBase()).setPluginId(plugin.getId());
+				((IFragment) getMonitorBase()).setPluginId(plugin.getId());
 				fPluginMinVersionEntry.setValue(plugin.getVersion());
-				((IFragment) getPluginBase()).setPluginVersion(getVersion());
+				((IFragment) getMonitorBase()).setPluginVersion(getVersion());
 			} catch (CoreException e) {
 			}
 
@@ -160,7 +160,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 		FormEntryAdapter textListener = new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					((IFragment) getPluginBase()).setPluginVersion(getVersion());
+					((IFragment) getMonitorBase()).setPluginVersion(getVersion());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -185,7 +185,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 		SelectionAdapter comboListener = new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				try {
-					((IFragment) getPluginBase()).setPluginVersion(getVersion());
+					((IFragment) getMonitorBase()).setPluginVersion(getVersion());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -238,7 +238,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 		fPluginMinVersionEntry.setFormEntryListener(new FormEntryAdapter(this, actionBars) {
 			public void textValueChanged(FormEntry entry) {
 				try {
-					((IFragment) getPluginBase()).setPluginVersion(entry.getValue());
+					((IFragment) getMonitorBase()).setPluginVersion(entry.getValue());
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}
@@ -268,7 +268,7 @@ public class SimpleMonitorInfoSection extends MonitorInfoSection {
 			public void widgetSelected(SelectionEvent event) {
 				int match = fMatchCombo.getSelectionIndex();
 				try {
-					((IFragment) getPluginBase()).setRule(match);
+					((IFragment) getMonitorBase()).setRule(match);
 				} catch (CoreException e) {
 					MDEPlugin.logException(e);
 				}

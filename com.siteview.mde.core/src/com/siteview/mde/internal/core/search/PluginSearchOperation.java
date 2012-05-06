@@ -100,7 +100,7 @@ public class PluginSearchOperation {
 	}
 
 	private void findExtensionPointDeclarations(IMonitorModelBase model, ArrayList result) {
-		IPluginExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
 		for (int i = 0; i < extensionPoints.length; i++) {
 			if (fPattern.matcher(extensionPoints[i].getFullId()).matches())
 				result.add(extensionPoints[i]);

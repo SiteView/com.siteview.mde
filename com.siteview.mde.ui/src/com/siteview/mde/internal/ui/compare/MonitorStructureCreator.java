@@ -180,10 +180,10 @@ public class MonitorStructureCreator extends StructureCreator {
 	}
 
 	private void createExtensionPoints(DocumentRangeNode parent, MonitorModelBase model, MDELabelProvider labelProvider, ResourceManager resources) {
-		IPluginExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] extensionPoints = model.getMonitorBase().getExtensionPoints();
 		int type = EXTENSION_POINT;
 		for (int i = 0; i < extensionPoints.length; i++) {
-			IPluginExtensionPoint extensionPoint = extensionPoints[i];
+			IMonitorExtensionPoint extensionPoint = extensionPoints[i];
 			createNode(parent, type, extensionPoint, labelProvider, resources);
 		}
 	}
@@ -219,7 +219,7 @@ public class MonitorStructureCreator extends StructureCreator {
 		if (element instanceof IMonitorExtension) {
 			return MDEPluginImages.DESC_EXTENSION_OBJ;
 		}
-		if (element instanceof IPluginExtensionPoint) {
+		if (element instanceof IMonitorExtensionPoint) {
 			return MDEPluginImages.DESC_EXT_POINT_OBJ;
 		}
 		return null;

@@ -36,7 +36,7 @@ import com.siteview.mde.internal.ui.elements.DefaultContentProvider;
 import com.siteview.mde.internal.ui.parts.TablePart;
 import com.siteview.mde.internal.ui.refactoring.PDERefactoringAction;
 import com.siteview.mde.internal.ui.refactoring.RefactoringActionFactory;
-import com.siteview.mde.internal.ui.search.PluginSearchActionGroup;
+import com.siteview.mde.internal.ui.search.MonitorSearchActionGroup;
 import com.siteview.mde.internal.ui.util.SWTUtil;
 import com.siteview.mde.internal.ui.wizards.extension.NewExtensionPointWizard;
 import org.eclipse.swt.SWT;
@@ -136,7 +136,7 @@ public class ExtensionPointsSection extends TableSection {
 	}
 
 	public boolean setFormInput(Object object) {
-		if (object instanceof IPluginExtensionPoint) {
+		if (object instanceof IMonitorExtensionPoint) {
 			pointTable.setSelection(new StructuredSelection(object), true);
 			return true;
 		}
@@ -154,7 +154,7 @@ public class ExtensionPointsSection extends TableSection {
 			return;
 		}
 		Object changeObject = event.getChangedObjects()[0];
-		if (changeObject instanceof IPluginExtensionPoint) {
+		if (changeObject instanceof IMonitorExtensionPoint) {
 			if (event.getChangeType() == IModelChangedEvent.INSERT) {
 				pointTable.add(changeObject);
 				pointTable.setSelection(new StructuredSelection(changeObject), true);
@@ -184,7 +184,7 @@ public class ExtensionPointsSection extends TableSection {
 		}
 		manager.add(new Separator());
 		IBaseModel model = getPage().getMDEEditor().getAggregateModel();
-		PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+		MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 		actionGroup.setBaseModel(model);
 		actionGroup.setContext(new ActionContext(selection));
 		actionGroup.fillContextMenu(manager);
@@ -232,11 +232,11 @@ public class ExtensionPointsSection extends TableSection {
 		Object[] selection = ((IStructuredSelection) pointTable.getSelection()).toArray();
 		for (int i = 0; i < selection.length; i++) {
 			Object object = selection[i];
-			if (object != null && object instanceof IPluginExtensionPoint) {
+			if (object != null && object instanceof IMonitorExtensionPoint) {
 				IStructuredSelection newSelection = null;
-				IPluginExtensionPoint ep = (IPluginExtensionPoint) object;
+				IMonitorExtensionPoint ep = (IMonitorExtensionPoint) object;
 				IMonitorBase plugin = ep.getMonitorBase();
-				IPluginExtensionPoint[] points = plugin.getExtensionPoints();
+				IMonitorExtensionPoint[] points = plugin.getExtensionPoints();
 				int index = getNewSelectionIndex(getArrayIndex(points, ep), points.length);
 				if (index != -1)
 					newSelection = new StructuredSelection(points[index]);
@@ -315,14 +315,14 @@ public class ExtensionPointsSection extends TableSection {
 			for (int i = 0; i < sourceObjects.length; i++) {
 				Object sourceObject = sourceObjects[i];
 
-				if ((sourceObject instanceof IPluginExtensionPoint) && (pluginBase instanceof IDocumentElementNode)) {
+				if ((sourceObject instanceof IMonitorExtensionPoint) && (pluginBase instanceof IDocumentElementNode)) {
 					// Extension point object
 					IDocumentElementNode extensionPoint = (IDocumentElementNode) sourceObject;
 					// Adjust all the source object transient field values to
 					// acceptable values
 					extensionPoint.reconnect((IDocumentElementNode) pluginBase, model);
 					// Add the extension point to the plug-in
-					pluginBase.add((IPluginExtensionPoint) extensionPoint);
+					pluginBase.add((IMonitorExtensionPoint) extensionPoint);
 				}
 			}
 		} catch (CoreException e) {
@@ -337,7 +337,7 @@ public class ExtensionPointsSection extends TableSection {
 		// All source objects must be extension points
 		// No restriction on duplicates
 		for (int i = 0; i < sourceObjects.length; i++) {
-			if ((sourceObjects[i] instanceof IPluginExtensionPoint) == false) {
+			if ((sourceObjects[i] instanceof IMonitorExtensionPoint) == false) {
 				return false;
 			}
 		}

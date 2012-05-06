@@ -17,7 +17,7 @@ import com.siteview.mde.internal.core.text.bundle.ExportPackageObject;
 import com.siteview.mde.internal.core.text.bundle.ImportPackageObject;
 import com.siteview.mde.internal.ui.MDEPlugin;
 import com.siteview.mde.internal.ui.MDEUIMessages;
-import com.siteview.mde.internal.ui.parts.PluginVersionPart;
+import com.siteview.mde.internal.ui.parts.MonitorVersionPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -36,7 +36,7 @@ public class DependencyPropertiesDialog extends StatusDialog {
 	private boolean fExported;
 	private boolean fOptional;
 
-	private PluginVersionPart fVersionPart;
+	private MonitorVersionPart fVersionPart;
 
 	private boolean fShowOptional;
 	private String fVersion;
@@ -63,9 +63,9 @@ public class DependencyPropertiesDialog extends StatusDialog {
 		fShowOptional = showOptional;
 		fPluginId = pluginId;
 		if (isImport)
-			fVersionPart = new PluginVersionPart(true);
+			fVersionPart = new MonitorVersionPart(true);
 		else
-			fVersionPart = new PluginVersionPart(false) {
+			fVersionPart = new MonitorVersionPart(false) {
 				protected String getGroupText() {
 					return MDEUIMessages.DependencyPropertiesDialog_exportGroupText;
 				}

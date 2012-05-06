@@ -50,7 +50,7 @@ public class ManifestEditorOpener {
 		String value = null;
 		IRegion region = null;
 		// since Extension and Extension point matches don't contain line #'s, we need handle them differently (by trying to find matches in UI model)
-		if (editor instanceof ManifestEditor && (element instanceof IMonitorExtension || element instanceof IPluginExtensionPoint)) {
+		if (editor instanceof ManifestEditor && (element instanceof IMonitorExtension || element instanceof IMonitorExtensionPoint)) {
 			region = getAttributeMatch((ManifestEditor) editor, element, document);
 		} else {
 			if (element instanceof IMonitorImport) {
@@ -138,7 +138,7 @@ public class ManifestEditorOpener {
 				int offset = ((MonitorObjectNode) element).getOffset();
 				offset += ((MonitorObjectNode) element).getLength();
 				String name = (object instanceof IMonitorExtension) ? "point" : "id"; //$NON-NLS-1$ //$NON-NLS-2$
-				String value = (object instanceof IMonitorExtension) ? ((IMonitorExtension) object).getPoint() : ((IPluginExtensionPoint) object).getId();
+				String value = (object instanceof IMonitorExtension) ? ((IMonitorExtension) object).getPoint() : ((IMonitorExtensionPoint) object).getId();
 				return getAttributeRegion(document, name, value, offset);
 			}
 		}

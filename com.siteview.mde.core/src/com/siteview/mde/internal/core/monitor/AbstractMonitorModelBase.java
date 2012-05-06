@@ -147,7 +147,7 @@ public abstract class AbstractMonitorModelBase extends AbstractNLModel implement
 		return extension;
 	}
 
-	public IPluginExtensionPoint createExtensionPoint() {
+	public IMonitorExtensionPoint createExtensionPoint() {
 		MonitorExtensionPoint extensionPoint = new MonitorExtensionPoint();
 		extensionPoint.setModel(this);
 		extensionPoint.setParent(getMonitorBase());

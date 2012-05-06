@@ -22,14 +22,14 @@ import com.siteview.mde.internal.ui.MDEPlugin;
 import com.siteview.mde.internal.ui.MDEUIMessages;
 
 public class NewSchemaFileMainPage extends BaseExtensionPointMainPage {
-	private IPluginExtensionPoint fPoint;
+	private IMonitorExtensionPoint fPoint;
 	private boolean isPluginIdFinal;
 
 	public NewSchemaFileMainPage(IContainer container) {
 		this(container, null, false);
 	}
 
-	public NewSchemaFileMainPage(IContainer container, IPluginExtensionPoint point, boolean isPluginIdFinal) {
+	public NewSchemaFileMainPage(IContainer container, IMonitorExtensionPoint point, boolean isPluginIdFinal) {
 		super(container);
 		setTitle(MDEUIMessages.NewSchemaFileWizard_title);
 		setDescription(MDEUIMessages.NewSchemaFileWizard_desc);

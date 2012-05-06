@@ -59,8 +59,8 @@ public class DependencyExtentSearchResultPage extends AbstractSearchResultPage {
 		 * @see org.eclipse.jdt.ui.JavaElementLabelProvider#getText(java.lang.Object)
 		 */
 		public String getText(Object element) {
-			if (element instanceof IPluginExtensionPoint)
-				return ((IPluginExtensionPoint) element).getFullId();
+			if (element instanceof IMonitorExtensionPoint)
+				return ((IMonitorExtensionPoint) element).getFullId();
 
 			if (element instanceof IMonitorExtension)
 				return ((IMonitorExtension) element).getPoint();
@@ -106,7 +106,7 @@ public class DependencyExtentSearchResultPage extends AbstractSearchResultPage {
 		group.setContext(new ActionContext(getViewer().getSelection()));
 		group.fillContextMenu(mgr);
 		addJavaSearchGroup(mgr);
-		PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+		MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 		actionGroup.setContext(new ActionContext(getViewer().getSelection()));
 		actionGroup.fillContextMenu(mgr);
 	}

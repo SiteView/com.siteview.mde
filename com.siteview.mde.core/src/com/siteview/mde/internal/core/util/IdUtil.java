@@ -105,7 +105,7 @@ public class IdUtil {
 	 * @param point
 	 * @param fModel
 	 */
-	public static String getFullId(IPluginExtensionPoint point, IMonitorModelBase model) {
+	public static String getFullId(IMonitorExtensionPoint point, IMonitorModelBase model) {
 
 		if ((point instanceof MonitorExtensionPointNode) && (model != null)) {
 			String pointId = point.getId();

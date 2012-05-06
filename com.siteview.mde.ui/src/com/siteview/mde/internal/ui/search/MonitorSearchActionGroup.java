@@ -10,20 +10,22 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.search;
 
-import com.siteview.mde.core.IBaseModel;
-import com.siteview.mde.core.monitor.*;
-import com.siteview.mde.internal.core.MDECore;
 import com.siteview.mde.internal.core.monitor.ImportObject;
-import com.siteview.mde.internal.ui.editor.actions.OpenSchemaAction;
-import com.siteview.mde.internal.ui.search.dependencies.DependencyExtentAction;
+
+import com.siteview.mde.core.monitor.*;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import com.siteview.mde.core.IBaseModel;
+import com.siteview.mde.internal.core.MDECore;
+import com.siteview.mde.internal.ui.editor.actions.OpenSchemaAction;
+import com.siteview.mde.internal.ui.search.dependencies.DependencyExtentAction;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.actions.ActionGroup;
 
-public class PluginSearchActionGroup extends ActionGroup {
+public class MonitorSearchActionGroup extends ActionGroup {
 
 	private IBaseModel fModel;
 
@@ -119,7 +121,7 @@ public class PluginSearchActionGroup extends ActionGroup {
 		} else if (object instanceof ImportObject) {
 			object = ((ImportObject) object).getImport();
 		}
-		if (object instanceof IPluginExtensionPoint || object instanceof IMonitorImport || (object instanceof IMonitor) || (object instanceof IMonitorExtension))
+		if (object instanceof IMonitorExtensionPoint || object instanceof IMonitorImport || (object instanceof IMonitor) || (object instanceof IMonitorExtension))
 			menu.add(new FindReferencesAction(object));
 	}
 

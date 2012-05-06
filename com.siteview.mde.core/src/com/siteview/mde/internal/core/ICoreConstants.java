@@ -63,15 +63,15 @@ public interface ICoreConstants {
 	String CHECKED_VERSION_PLUGINS = "checkedVersionPlugins"; //$NON-NLS-1$
 
 	// Target Environment
-	String OS = "org.eclipse.pde.ui.os"; //$NON-NLS-1$
-	String WS = "org.eclipse.pde.ui.ws"; //$NON-NLS-1$
-	String NL = "org.eclipse.pde.ui.nl"; //$NON-NLS-1$
-	String ARCH = "org.eclipse.pde.ui.arch"; //$NON-NLS-1$
+	String OS = "com.siteview.mde.ui.os"; //$NON-NLS-1$
+	String WS = "com.siteview.mde.ui.ws"; //$NON-NLS-1$
+	String NL = "com.siteview.mde.ui.nl"; //$NON-NLS-1$
+	String ARCH = "com.siteview.mde.ui.arch"; //$NON-NLS-1$
 
-	String OS_EXTRA = "org.eclipse.pde.os.extra"; //$NON-NLS-1$
-	String WS_EXTRA = "org.eclipse.pde.ws.extra"; //$NON-NLS-1$
-	String NL_EXTRA = "org.eclipse.pde.nl.extra"; //$NON-NLS-1$
-	String ARCH_EXTRA = "org.eclipse.pde.arch.extra"; //$NON-NLS-1$
+	String OS_EXTRA = "com.siteview.mde.os.extra"; //$NON-NLS-1$
+	String WS_EXTRA = "com.siteview.mde.ws.extra"; //$NON-NLS-1$
+	String NL_EXTRA = "com.siteview.mde.nl.extra"; //$NON-NLS-1$
+	String ARCH_EXTRA = "com.siteview.mde.arch.extra"; //$NON-NLS-1$
 
 	// Target JRE
 	String TARGET_JRE = "targetJRE"; //$NON-NLS-1$

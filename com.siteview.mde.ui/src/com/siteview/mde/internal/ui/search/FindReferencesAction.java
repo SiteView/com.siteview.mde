@@ -44,10 +44,10 @@ public class FindReferencesAction extends BaseSearchAction {
 		if (fSelectedObject instanceof IMonitor) {
 			input.setSearchElement(PluginSearchInput.ELEMENT_PLUGIN);
 			input.setSearchString(((IMonitor) fSelectedObject).getId());
-		} else if (fSelectedObject instanceof IPluginExtensionPoint) {
+		} else if (fSelectedObject instanceof IMonitorExtensionPoint) {
 			input.setSearchElement(PluginSearchInput.ELEMENT_EXTENSION_POINT);
-			String extensionID = ((IPluginExtensionPoint) fSelectedObject).getId();
-			IMonitorModelBase model = ((IPluginExtensionPoint) fSelectedObject).getMonitorModel();
+			String extensionID = ((IMonitorExtensionPoint) fSelectedObject).getId();
+			IMonitorModelBase model = ((IMonitorExtensionPoint) fSelectedObject).getMonitorModel();
 
 			// Only plug-in xmls created with 3.2 or later support fully qualified names, assume no file version means a > 3.2 version
 			String schemaVersion = model.getMonitorBase().getSchemaVersion();

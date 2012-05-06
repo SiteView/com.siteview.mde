@@ -30,7 +30,7 @@ public class SchemaRegistry {
 	private HashMap fRegistry = new HashMap();
 
 	public ISchema getSchema(String extPointID) {
-		IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(extPointID);
+		IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(extPointID);
 		if (point == null) {
 			// if there is an old schema associated with this extension point, release it.
 			if (fRegistry.containsKey(extPointID))
@@ -78,7 +78,7 @@ public class SchemaRegistry {
 		return desc;
 	}
 
-	public static URL getSchemaURL(IPluginExtensionPoint point, IMonitorModelBase base) {
+	public static URL getSchemaURL(IMonitorExtensionPoint point, IMonitorModelBase base) {
 		URL url = getSchemaURL(point);
 		if (url != null) {
 			return url;
@@ -90,7 +90,7 @@ public class SchemaRegistry {
 		return getSchemaURL(getId(point, base), schema);
 	}
 
-	public static URL getSchemaURL(IPluginExtensionPoint point) {
+	public static URL getSchemaURL(IMonitorExtensionPoint point) {
 		String schema = point.getSchema();
 		if (schema == null || schema.trim().length() == 0)
 			return null;
@@ -165,7 +165,7 @@ public class SchemaRegistry {
 		fRegistry.clear();
 	}
 
-	private static String getId(IPluginExtensionPoint point, IMonitorModelBase base) {
+	private static String getId(IMonitorExtensionPoint point, IMonitorModelBase base) {
 		String id = null;
 		if (point instanceof MonitorExtensionPointNode) {
 			if (base instanceof IFragmentModel) {

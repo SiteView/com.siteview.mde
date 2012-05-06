@@ -12,7 +12,7 @@
 package com.siteview.mde.internal.ui.editor.actions;
 
 import com.siteview.mde.core.monitor.IMonitorExtension;
-import com.siteview.mde.core.monitor.IPluginExtensionPoint;
+import com.siteview.mde.core.monitor.IMonitorExtensionPoint;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -76,7 +76,7 @@ public class OpenSchemaAction extends Action {
 	/**
 	 * @param point
 	 */
-	public void setInput(IPluginExtensionPoint point) {
+	public void setInput(IMonitorExtensionPoint point) {
 		// Ensure the point is defined
 		if (point == null) {
 			fSchema = null;
@@ -105,7 +105,7 @@ public class OpenSchemaAction extends Action {
 		}
 		fFullPointID = fullPointID;
 		// Find the corresponding extension point
-		IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fFullPointID);
+		IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fFullPointID);
 		// Ensure the extension point is defined
 		if (point == null) {
 			fSchema = null;
@@ -128,7 +128,7 @@ public class OpenSchemaAction extends Action {
 		// Get the full extension point ID
 		fFullPointID = extension.getPoint();
 		// Find the corresponding extension point
-		IPluginExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fFullPointID);
+		IMonitorExtensionPoint point = MDECore.getDefault().getExtensionsRegistry().findExtensionPoint(fFullPointID);
 		// Ensure the extension point is defined
 		if (point == null) {
 			fSchema = null;
@@ -138,7 +138,7 @@ public class OpenSchemaAction extends Action {
 		fSchema = findSchema(point);
 	}
 
-	private ISchema findSchema(IPluginExtensionPoint point) {
+	private ISchema findSchema(IMonitorExtensionPoint point) {
 		// Find the corresponding schema URL for the extension point
 		URL url = SchemaRegistry.getSchemaURL(point);
 		// Ensure the URL is defined

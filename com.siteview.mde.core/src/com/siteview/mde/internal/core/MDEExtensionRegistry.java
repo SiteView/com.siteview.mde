@@ -148,14 +148,14 @@ public class MDEExtensionRegistry {
 	/*
 	 * Returns IPluginExtenionPoint for extension point id for any model (both enabled/disabled)
 	 */
-	public IPluginExtensionPoint findExtensionPoint(String pointId) {
+	public IMonitorExtensionPoint findExtensionPoint(String pointId) {
 		IExtensionPoint extPoint = getExtensionPoint(pointId);
 		if (extPoint != null) {
 			IMonitorModelBase model = getPlugin(extPoint.getContributor(), true);
 			if (model != null) {
-				IPluginExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
+				IMonitorExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
 				for (int i = 0; i < points.length; i++) {
-					IPluginExtensionPoint point = points[i];
+					IMonitorExtensionPoint point = points[i];
 					if (points[i].getFullId().equals(pointId)) {
 						return point;
 					}
@@ -180,10 +180,10 @@ public class MDEExtensionRegistry {
 		return (IMonitorExtension[]) list.toArray(new IMonitorExtension[list.size()]);
 	}
 
-	public IPluginExtensionPoint[] findExtensionPointsForPlugin(IMonitorModelBase base) {
+	public IMonitorExtensionPoint[] findExtensionPointsForPlugin(IMonitorModelBase base) {
 		IContributor contributor = fStrategy.createContributor(base);
 		if (contributor == null)
-			return new IPluginExtensionPoint[0];
+			return new IMonitorExtensionPoint[0];
 		IExtensionPoint[] extensions = getRegistry().getExtensionPoints(fStrategy.createContributor(base));
 		ArrayList list = new ArrayList();
 		for (int i = 0; i < extensions.length; i++) {
@@ -192,7 +192,7 @@ public class MDEExtensionRegistry {
 			point.setParent(base.getExtensions());
 			list.add(point);
 		}
-		return (IPluginExtensionPoint[]) list.toArray(new IPluginExtensionPoint[list.size()]);
+		return (IMonitorExtensionPoint[]) list.toArray(new IMonitorExtensionPoint[list.size()]);
 	}
 
 	private ISharedMonitorModel getExtensionsModel(IMonitorModelBase base) {

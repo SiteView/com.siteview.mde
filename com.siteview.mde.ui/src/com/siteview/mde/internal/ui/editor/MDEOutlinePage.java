@@ -12,7 +12,7 @@ package com.siteview.mde.internal.ui.editor;
 
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.ISelection;
-import com.siteview.mde.internal.ui.search.PluginSearchActionGroup;
+import com.siteview.mde.internal.ui.search.MonitorSearchActionGroup;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.actions.ActionContext;
@@ -35,7 +35,7 @@ public abstract class MDEOutlinePage extends ContentOutlinePage {
 		IMenuListener listener = new IMenuListener() {
 			public void menuAboutToShow(IMenuManager manager) {
 				ISelection selection = getSelection();
-				PluginSearchActionGroup actionGroup = new PluginSearchActionGroup();
+				MonitorSearchActionGroup actionGroup = new MonitorSearchActionGroup();
 				if (fEditor != null)
 					actionGroup.setBaseModel(fEditor.getAggregateModel());
 				actionGroup.setContext(new ActionContext(selection));

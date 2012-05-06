@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 
 public class MDEMarkerFactory {
 
-	public static final String MARKER_ID = "org.eclipse.pde.core.problem"; //$NON-NLS-1$
+	public static final String MARKER_ID = "com.siteview.mde.core.problem"; //$NON-NLS-1$
 
 	public static final int NO_RESOLUTION = -1;
 

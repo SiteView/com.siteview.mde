@@ -243,13 +243,13 @@ public abstract class MonitorBaseNode extends MonitorObjectNode implements IMoni
 	/* (non-Javadoc)
 	 * @see org.eclipse.pde.core.plugin.IExtensions#add(org.eclipse.pde.core.plugin.IPluginExtensionPoint)
 	 */
-	public void add(IPluginExtensionPoint extensionPoint) throws CoreException {
+	public void add(IMonitorExtensionPoint extensionPoint) throws CoreException {
 		if (extensionPoint instanceof MonitorExtensionPointNode) {
 			MonitorExtensionPointNode node = (MonitorExtensionPointNode) extensionPoint;
 			node.setModel(getModel());
 			extensionPoint.setInTheModel(true);
 			node.setParentNode(this);
-			IPluginExtensionPoint[] extPoints = getExtensionPoints();
+			IMonitorExtensionPoint[] extPoints = getExtensionPoints();
 			if (extPoints.length > 0)
 				addChildNode(node, indexOf((IDocumentElementNode) extPoints[extPoints.length - 1]) + 1);
 			else {
@@ -271,14 +271,14 @@ public abstract class MonitorBaseNode extends MonitorObjectNode implements IMoni
 	/* (non-Javadoc)
 	 * @see org.eclipse.pde.core.plugin.IExtensions#getExtensionPoints()
 	 */
-	public IPluginExtensionPoint[] getExtensionPoints() {
+	public IMonitorExtensionPoint[] getExtensionPoints() {
 		ArrayList result = new ArrayList();
 		IDocumentElementNode[] children = getChildNodes();
 		for (int i = 0; i < children.length; i++) {
-			if (children[i] instanceof IPluginExtensionPoint)
+			if (children[i] instanceof IMonitorExtensionPoint)
 				result.add(children[i]);
 		}
-		return (IPluginExtensionPoint[]) result.toArray(new IPluginExtensionPoint[result.size()]);
+		return (IMonitorExtensionPoint[]) result.toArray(new IMonitorExtensionPoint[result.size()]);
 	}
 
 	/* (non-Javadoc)
@@ -317,7 +317,7 @@ public abstract class MonitorBaseNode extends MonitorObjectNode implements IMoni
 	/* (non-Javadoc)
 	 * @see org.eclipse.pde.core.plugin.IExtensions#remove(org.eclipse.pde.core.plugin.IPluginExtensionPoint)
 	 */
-	public void remove(IPluginExtensionPoint extensionPoint) throws CoreException {
+	public void remove(IMonitorExtensionPoint extensionPoint) throws CoreException {
 		if (extensionPoint instanceof IDocumentElementNode) {
 			removeChildNode((IDocumentElementNode) extensionPoint);
 			extensionPoint.setInTheModel(false);
@@ -404,7 +404,7 @@ public abstract class MonitorBaseNode extends MonitorObjectNode implements IMoni
 			buffer.append(requires.write(true) + newLine);
 		}
 
-		IPluginExtensionPoint[] extPoints = getExtensionPoints();
+		IMonitorExtensionPoint[] extPoints = getExtensionPoints();
 		for (int i = 0; i < extPoints.length; i++) {
 			IDocumentElementNode extPoint = (IDocumentElementNode) extPoints[i];
 			extPoint.setLineIndent(getLineIndent() + 3);

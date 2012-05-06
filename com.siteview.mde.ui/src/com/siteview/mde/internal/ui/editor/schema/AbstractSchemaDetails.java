@@ -20,7 +20,7 @@ import com.siteview.mde.internal.core.schema.SchemaObject;
 import com.siteview.mde.internal.ui.MDEUIMessages;
 import com.siteview.mde.internal.ui.editor.*;
 import com.siteview.mde.internal.ui.parts.ComboPart;
-import com.siteview.mde.internal.ui.parts.PDESourceViewer;
+import com.siteview.mde.internal.ui.parts.MDESourceViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.events.*;
@@ -48,7 +48,7 @@ public abstract class AbstractSchemaDetails extends MDEDetails {
 	private Button fUnboundSelect;
 	private Label fMinLabel;
 	private Label fMaxLabel;
-	private PDESourceViewer fDescriptionViewer = null;
+	private MDESourceViewer fDescriptionViewer = null;
 	private boolean fBlockListeners = false;
 	private ISchemaObject fSchemaObject;
 
@@ -130,7 +130,7 @@ public abstract class AbstractSchemaDetails extends MDEDetails {
 		label.setLayoutData(gd);
 		label.setForeground(toolkit.getColors().getColor(IFormColors.TITLE));
 
-		fDescriptionViewer = new PDESourceViewer(getPage());
+		fDescriptionViewer = new MDESourceViewer(getPage());
 		gd = new GridData(GridData.FILL_BOTH);
 		gd.heightHint = 75;
 		gd.widthHint = 60;

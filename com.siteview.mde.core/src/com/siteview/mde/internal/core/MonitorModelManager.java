@@ -201,7 +201,7 @@ public class MonitorModelManager implements IModelProviderListener {
 
 		// Removes from the master table and the state all workspace plug-ins that have been
 		// removed (project closed/deleted) from the workspace.
-		// Also if the taget location changes, all models from the old target are removed
+		// Also if the target location changes, all models from the old target are removed
 		if ((e.getEventTypes() & IModelProviderEvent.MODELS_REMOVED) != 0) {
 			IModel[] removed = e.getRemovedModels();
 			for (int i = 0; i < removed.length; i++) {

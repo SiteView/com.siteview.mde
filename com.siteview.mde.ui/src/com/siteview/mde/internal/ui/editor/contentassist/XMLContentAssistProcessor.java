@@ -262,8 +262,8 @@ public class XMLContentAssistProcessor extends TypePackageCompletionProcessor im
 				}
 				return computeAttributeProposal(attr, offset, attrValue, objs);
 			}
-		} else if (obj instanceof IPluginExtensionPoint) {
-			if (attr.getAttributeValue().equals(IPluginExtensionPoint.P_SCHEMA)) {
+		} else if (obj instanceof IMonitorExtensionPoint) {
+			if (attr.getAttributeValue().equals(IMonitorExtensionPoint.P_SCHEMA)) {
 				// provide proposals with all schema files in current plugin?
 
 			}
@@ -413,7 +413,7 @@ public class XMLContentAssistProcessor extends TypePackageCompletionProcessor im
 		ArrayList propList = new ArrayList();
 		if (node instanceof IMonitorBase) {
 			return computeRootNodeProposals(node, offset, filter);
-		} else if (node instanceof IPluginExtensionPoint) {
+		} else if (node instanceof IMonitorExtensionPoint) {
 			return null;
 		} else {
 			IMonitorObject obj = XMLUtil.getTopLevelParent(node);
@@ -458,8 +458,8 @@ public class XMLContentAssistProcessor extends TypePackageCompletionProcessor im
 			ISchemaElement sElem = XMLUtil.getSchemaElement(node, node != null ? ((IMonitorExtension) node).getPoint() : null);
 			ISchemaObject[] sAttrs = sElem != null ? sElem.getAttributes() : new ISchemaObject[] {new VirtualSchemaObject(IIdentifiable.P_ID, MDEUIMessages.XMLContentAssistProcessor_extId, F_ATTRIBUTE), new VirtualSchemaObject(IMonitorObject.P_NAME, MDEUIMessages.XMLContentAssistProcessor_extName, F_ATTRIBUTE), new VirtualSchemaObject(IMonitorExtension.P_POINT, MDEUIMessages.XMLContentAssistProcessor_extPoint, F_ATTRIBUTE)};
 			return computeAttributeProposals(sAttrs, node, offset, filter, nodeName);
-		} else if (type == F_EXTENSION_POINT || node instanceof IPluginExtensionPoint) {
-			ISchemaObject[] sAttrs = new ISchemaObject[] {new VirtualSchemaObject(IIdentifiable.P_ID, MDEUIMessages.XMLContentAssistProcessor_extPointId, F_ATTRIBUTE), new VirtualSchemaObject(IMonitorObject.P_NAME, MDEUIMessages.XMLContentAssistProcessor_extPointName, F_ATTRIBUTE), new VirtualSchemaObject(IPluginExtensionPoint.P_SCHEMA, MDEUIMessages.XMLContentAssistProcessor_schemaLocation, F_ATTRIBUTE)};
+		} else if (type == F_EXTENSION_POINT || node instanceof IMonitorExtensionPoint) {
+			ISchemaObject[] sAttrs = new ISchemaObject[] {new VirtualSchemaObject(IIdentifiable.P_ID, MDEUIMessages.XMLContentAssistProcessor_extPointId, F_ATTRIBUTE), new VirtualSchemaObject(IMonitorObject.P_NAME, MDEUIMessages.XMLContentAssistProcessor_extPointName, F_ATTRIBUTE), new VirtualSchemaObject(IMonitorExtensionPoint.P_SCHEMA, MDEUIMessages.XMLContentAssistProcessor_schemaLocation, F_ATTRIBUTE)};
 			return computeAttributeProposals(sAttrs, node, offset, filter, nodeName);
 		} else {
 			IMonitorObject obj = XMLUtil.getTopLevelParent(node);
@@ -702,7 +702,7 @@ public class XMLContentAssistProcessor extends TypePackageCompletionProcessor im
 				continue;
 			}
 			// Get all extension points defined by this plugin
-			IPluginExtensionPoint[] points = plugins[i].getMonitorBase().getExtensionPoints();
+			IMonitorExtensionPoint[] points = plugins[i].getMonitorBase().getExtensionPoints();
 			// Process each extension point
 			for (int j = 0; j < points.length; j++) {
 				VirtualSchemaObject vObject = new VirtualSchemaObject(IdUtil.getFullId(points[j], model), points[j], vSchemaType);
@@ -750,7 +750,7 @@ public class XMLContentAssistProcessor extends TypePackageCompletionProcessor im
 		}
 		fInternalExtPoints = new ArrayList();
 		// Get all extension points defined by this plugin
-		IPluginExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
+		IMonitorExtensionPoint[] points = model.getMonitorBase().getExtensionPoints();
 		// Process each extension point
 		for (int j = 0; j < points.length; j++) {
 			VirtualSchemaObject vObject = new VirtualSchemaObject(IdUtil.getFullId(points[j], model), points[j], vSchemaType);

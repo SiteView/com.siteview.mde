@@ -11,8 +11,15 @@
  *******************************************************************************/
 package com.siteview.mde.internal.ui.editor;
 
+import com.siteview.mde.core.IBaseModel;
+import com.siteview.mde.internal.core.text.*;
+import com.siteview.mde.internal.ui.*;
+import com.siteview.mde.internal.ui.editor.actions.*;
+import com.siteview.mde.internal.ui.editor.context.InputContext;
 import com.siteview.mde.internal.ui.editor.monitor.ExtensionHyperLink;
-
+import com.siteview.mde.internal.ui.editor.outline.IOutlineContentCreator;
+import com.siteview.mde.internal.ui.editor.outline.IOutlineSelectionHandler;
+import com.siteview.mde.internal.ui.editor.text.PDESelectAnnotationRulerAction;
 import java.util.ResourceBundle;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
@@ -23,14 +30,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.viewers.*;
-import com.siteview.mde.core.IBaseModel;
-import com.siteview.mde.internal.core.text.*;
-import com.siteview.mde.internal.ui.*;
-import com.siteview.mde.internal.ui.editor.actions.*;
-import com.siteview.mde.internal.ui.editor.context.InputContext;
-import com.siteview.mde.internal.ui.editor.outline.IOutlineContentCreator;
-import com.siteview.mde.internal.ui.editor.outline.IOutlineSelectionHandler;
-import com.siteview.mde.internal.ui.editor.text.PDESelectAnnotationRulerAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -47,7 +46,7 @@ import org.eclipse.ui.texteditor.*;
 
 public abstract class MDESourcePage extends TextEditor implements IFormPage, IGotoMarker, ISelectionChangedListener, IOutlineContentCreator, IOutlineSelectionHandler {
 
-	private static String RES_BUNDLE_LOCATION = "org.eclipse.pde.internal.ui.editor.text.ConstructedPDEEditorMessages"; //$NON-NLS-1$
+	private static String RES_BUNDLE_LOCATION = "com.siteview.mde.internal.ui.editor.text.ConstructedPDEEditorMessages"; //$NON-NLS-1$
 	private static ResourceBundle fgBundleForConstructedKeys = ResourceBundle.getBundle(RES_BUNDLE_LOCATION);
 
 	public static ResourceBundle getBundleForConstructedKeys() {
@@ -66,7 +65,7 @@ public abstract class MDESourcePage extends TextEditor implements IFormPage, IGo
 	 * 
 	 * @since 3.0
 	 */
-	private class PDESourcePageChangedListener implements ISelectionChangedListener {
+	private class MDESourcePageChangedListener implements ISelectionChangedListener {
 
 		/**
 		 * Installs this selection changed listener with the given selection
@@ -118,7 +117,7 @@ public abstract class MDESourcePage extends TextEditor implements IFormPage, IGo
 	 * 
 	 * @since 3.0
 	 */
-	private PDESourcePageChangedListener fEditorSelectionChangedListener;
+	private MDESourcePageChangedListener fEditorSelectionChangedListener;
 	private MDEFormEditor fEditor;
 	private Control fControl;
 	private int fIndex;
@@ -210,7 +209,7 @@ public abstract class MDESourcePage extends TextEditor implements IFormPage, IGo
 		};
 		fOutlinePage.addSelectionChangedListener(fOutlineSelectionChangedListener);
 		getSelectionProvider().addSelectionChangedListener(sourceOutlinePage);
-		fEditorSelectionChangedListener = new PDESourcePageChangedListener();
+		fEditorSelectionChangedListener = new MDESourcePageChangedListener();
 		fEditorSelectionChangedListener.install(getSelectionProvider());
 		return fOutlinePage;
 	}
